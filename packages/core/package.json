@@ -1,0 +1,21 @@
+{
+    "name": "core",
+    "version": "0.1.0",
+    "description": "A core package with base abstractions.",
+    "keywords": [
+        "core"
+    ],
+    "license": "MIT",
+    "author": "Pavlo Hodysh",
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "test": "test"
+    },
+    "devDependencies": {
+        "@repo/eslint-config": "workspace:*",
+        "@repo/typescript-config": "workspace:*"
+    }
+}

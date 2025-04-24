@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ReactFlow Data Model",
+    "type": "object",
+    "properties": {
+        "nodes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the node"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the node"
+                    },
+                    "data": {
+                        "type": "object",
+                        "description": "Custom data associated with the node"
+                    },
+                    "position": {
+                        "type": "object",
+                        "properties": {
+                            "x": {
+                                "type": "number",
+                                "description": "X-coordinate of the node"
+                            },
+                            "y": {
+                                "type": "number",
+                                "description": "Y-coordinate of the node"
+                            }
+                        },
+                        "required": ["x", "y"]
+                    }
+                },
+                "required": ["id", "position"]
+            }
+        },
+        "edges": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the edge"
+                    },
+                    "source": {
+                        "type": "string",
+                        "description": "ID of the source node"
+                    },
+                    "target": {
+                        "type": "string",
+                        "description": "ID of the target node"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the edge"
+                    },
+                    "data": {
+                        "type": "object",
+                        "description": "Custom data associated with the edge"
+                    }
+                },
+                "required": ["id", "source", "target"]
+            }
+        }
+    },
+    "required": ["nodes", "edges"]
+}
