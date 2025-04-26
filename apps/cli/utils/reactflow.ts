@@ -1,5 +1,5 @@
-import { Component } from "./Component";
-import { Connection } from "./Connection";
+import { Component } from "../../../packages/core/src/Component.ts";
+import { Connection } from "../../../packages/core/src/Connection.ts";
 
 type Node<NodeData extends Record<string, unknown>> = {
     id: string;

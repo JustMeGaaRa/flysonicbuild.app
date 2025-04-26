@@ -67,6 +67,25 @@ importers:
         specifier: ^6.3.1
         version: 6.3.2
 
+  development/build:
+    dependencies:
+      core:
+        specifier: workspace:*
+        version: link:../../packages/core
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
+
   packages/core:
     devDependencies:
       '@repo/eslint-config':

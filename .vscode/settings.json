@@ -28,5 +28,7 @@
             "fileMatch": ["**/*.json"],
             "url": "./development/schema/reactflow.schema.json"
         }
-    ]
+    ],
+    "deno.enable": true,
+    "deno.enablePaths": ["./apps/cli", "./development/"]
 }
