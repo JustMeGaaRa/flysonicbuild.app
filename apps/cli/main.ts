@@ -1,8 +1,21 @@
-import { parse } from "https://deno.land/std@0.167.0/flags/mod.ts";
-import { watchAndRun } from "./watcher.ts";
+import { parseArgs } from "jsr:@std/cli/parse-args";
+import { runWatchMode } from "./watcher.ts";
+import { runSingleMode } from "./runner.ts";
 
 async function main() {
-    const { _, out = "result.json" } = parse(Deno.args, { string: ["out"] });
+    const {
+        _,
+        watch,
+        out = "result.json",
+    } = parseArgs(Deno.args, {
+        alias: { h: "help", w: "watch", v: "version", o: "out" },
+        boolean: ["help", "version", "watch"],
+        string: ["out"],
+        default: {
+            out: "result.json",
+            watch: false,
+        },
+    });
     const [script] = _;
     if (!script) {
         console.error(
@@ -11,7 +24,10 @@ async function main() {
         Deno.exit(1);
     }
     const outFile = typeof out === "string" ? out : "result.json";
-    await watchAndRun(script as string, outFile);
+
+    const result = watch
+        ? await runWatchMode(script as string, outFile)
+        : await runSingleMode(script as string, outFile);
 }
 
 if (import.meta.main) {

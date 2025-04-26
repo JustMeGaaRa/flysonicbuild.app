@@ -18,7 +18,9 @@
                 "--inspect-wait",
                 "--allow-all",
                 "main.ts",
-                "../../development/build/main.ts"
+                "../../development/build/main.ts",
+                "--watch",
+                "--out=../../development/build/test_data/result.json"
             ],
             "attachSimplePort": 9229
         }
