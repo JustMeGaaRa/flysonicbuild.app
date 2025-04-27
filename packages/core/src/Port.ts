@@ -1,4 +1,4 @@
-import { Protocol } from "./Protocol";
+import { Protocol } from "./Protocol.ts";
 
 export interface Port {
     name: string;

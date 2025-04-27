@@ -1,6 +1,6 @@
-import { ErrorCode } from "./ErrorCode";
-import { ErrorRFC7807Format } from "./ErrorRFC7807Format";
-import { SourceMetadata } from "./SourceMetadata";
+import { ErrorCode } from "./ErrorCode.ts";
+import { ErrorRFC7807Format } from "./ErrorRFC7807Format.ts";
+import { SourceMetadata } from "./SourceMetadata.ts";
 
 export class ValidationError extends Error implements ErrorRFC7807Format {
     constructor(

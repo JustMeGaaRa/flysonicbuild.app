@@ -1,0 +1,1067 @@
+{
+  "nodes": [
+    {
+      "id": "vtx",
+      "type": "component",
+      "position": {
+        "x": 0,
+        "y": 100
+      },
+      "data": {
+        "id": "vtx",
+        "name": "Rush Tiny Tank VTX",
+        "ports": [
+          {
+            "name": "POWER_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "DATA",
+            "direction": "input",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "smartaudio",
+                "constraints": {
+                  "baud_rate": 9600
+                }
+              }
+            ]
+          },
+          {
+            "name": "VIDEO_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "analog_video",
+                "constraints": {
+                  "format": "NTSC"
+                }
+              }
+            ]
+          },
+          {
+            "name": "RF_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 5.8,
+                  "modulation": "FM",
+                  "connector": "U.FL"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "antenna",
+      "type": "component",
+      "position": {
+        "x": 300,
+        "y": 100
+      },
+      "data": {
+        "id": "antenna",
+        "name": "Rush Cherry Antenna",
+        "ports": [
+          {
+            "name": "RF_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 5.8,
+                  "modulation": "FM",
+                  "connector": "U.FL"
+                }
+              }
+            ]
+          },
+          {
+            "name": "signal",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 5.8,
+                  "modulation": "FM"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "rx",
+      "type": "component",
+      "position": {
+        "x": 600,
+        "y": 100
+      },
+      "data": {
+        "id": "rx",
+        "name": "BetaFPV ELRS Nano RX",
+        "ports": [
+          {
+            "name": "TX",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "elrs"
+              }
+            ]
+          },
+          {
+            "name": "RX",
+            "direction": "input",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "elrs"
+              }
+            ]
+          },
+          {
+            "name": "POWER_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "RF_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 915,
+                  "modulation": "FSK",
+                  "connector": "U.FL"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "rx_antenna",
+      "type": "component",
+      "position": {
+        "x": 900,
+        "y": 100
+      },
+      "data": {
+        "id": "rx_antenna",
+        "name": "BetaFPV ELRS Nano RX Antenna",
+        "ports": [
+          {
+            "name": "RF_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 915,
+                  "modulation": "FSK",
+                  "connector": "U.FL"
+                }
+              }
+            ]
+          },
+          {
+            "name": "signal",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "rf",
+                "constraints": {
+                  "frequency": 915,
+                  "modulation": "FSK"
+                }
+              },
+              {
+                "name": "serial",
+                "constraints": {
+                  "serial_provider": "CRSF"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fc",
+      "type": "component",
+      "position": {
+        "x": 1200,
+        "y": 100
+      },
+      "data": {
+        "id": "fc",
+        "name": "SpeedyBee F405 Mini FC",
+        "ports": [
+          {
+            "name": "UART1_TX",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "smartaudio",
+                "constraints": {
+                  "baud_rate": 9600
+                }
+              }
+            ]
+          },
+          {
+            "name": "UART1_VTX",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "analog_video",
+                "constraints": {
+                  "format": "NTSC"
+                }
+              }
+            ]
+          },
+          {
+            "name": "UART1_5V_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "UART1_GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "UART2_TX",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "elrs"
+              }
+            ]
+          },
+          {
+            "name": "UART2_RX",
+            "direction": "input",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "uart"
+              },
+              {
+                "name": "elrs"
+              }
+            ]
+          },
+          {
+            "name": "UART2_5V_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "UART2_GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "UART3_5V_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "UART3_GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "UART3_CAMERA_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "analog_video"
+              }
+            ]
+          },
+          {
+            "name": "8_PIN_CABLE",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "esc",
+      "type": "component",
+      "position": {
+        "x": 1500,
+        "y": 100
+      },
+      "data": {
+        "id": "esc",
+        "name": "SpeedyBee BLS 4-in-1 ESC",
+        "ports": [
+          {
+            "name": "8_PIN_CABLE",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power"
+              }
+            ]
+          },
+          {
+            "name": "PWM_OUT_1",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "pwm"
+              }
+            ]
+          },
+          {
+            "name": "GND_1",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "POWER_OUT_1",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "PWM_OUT_2",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "pwm"
+              }
+            ]
+          },
+          {
+            "name": "GND_2",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "POWER_OUT_2",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "PWM_OUT_3",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "pwm"
+              }
+            ]
+          },
+          {
+            "name": "GND_3",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "POWER_OUT_3",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "PWM_OUT_4",
+            "direction": "output",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "pwm"
+              }
+            ]
+          },
+          {
+            "name": "GND_4",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "POWER_OUT_4",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cam",
+      "type": "component",
+      "position": {
+        "x": 1800,
+        "y": 100
+      },
+      "data": {
+        "id": "cam",
+        "name": "Caddx Ratel 2",
+        "ports": [
+          {
+            "name": "VIDEO_OUT",
+            "direction": "output",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "analog_video",
+                "constraints": {
+                  "format": "NTSC"
+                }
+              }
+            ]
+          },
+          {
+            "name": "POWER_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power",
+                "constraints": {
+                  "voltage": 5
+                }
+              }
+            ]
+          },
+          {
+            "name": "GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "motor",
+      "type": "component",
+      "position": {
+        "x": 2100,
+        "y": 100
+      },
+      "data": {
+        "id": "motor",
+        "name": "T-Motor F1404 3800KV",
+        "ports": [
+          {
+            "name": "PWM_IN",
+            "direction": "input",
+            "kind": "logical",
+            "protocols": [
+              {
+                "name": "pwm"
+              }
+            ]
+          },
+          {
+            "name": "GND",
+            "direction": "bidirectional",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "ground"
+              }
+            ]
+          },
+          {
+            "name": "POWER_IN",
+            "direction": "input",
+            "kind": "physical",
+            "protocols": [
+              {
+                "name": "power"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "rx:RF_OUT->rx_antenna:RF_IN",
+      "type": "connection",
+      "source": "rx",
+      "target": "rx_antenna",
+      "sourceHandle": "rx-RF_OUT",
+      "targetHandle": "rx_antenna-RF_IN",
+      "data": {
+        "source": {
+          "componentId": "rx",
+          "portName": "RF_OUT"
+        },
+        "target": {
+          "componentId": "rx_antenna",
+          "portName": "RF_IN"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART2_5V_OUT->rx:POWER_IN",
+      "type": "connection",
+      "source": "fc",
+      "target": "rx",
+      "sourceHandle": "fc-UART2_5V_OUT",
+      "targetHandle": "rx-POWER_IN",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART2_5V_OUT"
+        },
+        "target": {
+          "componentId": "rx",
+          "portName": "POWER_IN"
+        },
+        "metadata": {
+          "color": "red"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART2_GND->rx:GND",
+      "type": "connection",
+      "source": "fc",
+      "target": "rx",
+      "sourceHandle": "fc-UART2_GND",
+      "targetHandle": "rx-GND",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART2_GND"
+        },
+        "target": {
+          "componentId": "rx",
+          "portName": "GND"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART2_TX->rx:RX",
+      "type": "connection",
+      "source": "fc",
+      "target": "rx",
+      "sourceHandle": "fc-UART2_TX",
+      "targetHandle": "rx-RX",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART2_TX"
+        },
+        "target": {
+          "componentId": "rx",
+          "portName": "RX"
+        },
+        "metadata": {
+          "color": "blue"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART2_RX->rx:TX",
+      "type": "connection",
+      "source": "fc",
+      "target": "rx",
+      "sourceHandle": "fc-UART2_RX",
+      "targetHandle": "rx-TX",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART2_RX"
+        },
+        "target": {
+          "componentId": "rx",
+          "portName": "TX"
+        },
+        "metadata": {
+          "color": "yellow"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "vtx:RF_OUT->antenna:RF_IN",
+      "type": "connection",
+      "source": "vtx",
+      "target": "antenna",
+      "sourceHandle": "vtx-RF_OUT",
+      "targetHandle": "antenna-RF_IN",
+      "data": {
+        "source": {
+          "componentId": "vtx",
+          "portName": "RF_OUT"
+        },
+        "target": {
+          "componentId": "antenna",
+          "portName": "RF_IN"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART1_5V_OUT->vtx:POWER_IN",
+      "type": "connection",
+      "source": "fc",
+      "target": "vtx",
+      "sourceHandle": "fc-UART1_5V_OUT",
+      "targetHandle": "vtx-POWER_IN",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART1_5V_OUT"
+        },
+        "target": {
+          "componentId": "vtx",
+          "portName": "POWER_IN"
+        },
+        "metadata": {
+          "color": "red"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART1_TX->vtx:DATA",
+      "type": "connection",
+      "source": "fc",
+      "target": "vtx",
+      "sourceHandle": "fc-UART1_TX",
+      "targetHandle": "vtx-DATA",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART1_TX"
+        },
+        "target": {
+          "componentId": "vtx",
+          "portName": "DATA"
+        },
+        "metadata": {
+          "color": "blue"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART1_VTX->vtx:VIDEO_IN",
+      "type": "connection",
+      "source": "fc",
+      "target": "vtx",
+      "sourceHandle": "fc-UART1_VTX",
+      "targetHandle": "vtx-VIDEO_IN",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART1_VTX"
+        },
+        "target": {
+          "componentId": "vtx",
+          "portName": "VIDEO_IN"
+        },
+        "metadata": {
+          "color": "yellow"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART1_GND->vtx:GND",
+      "type": "connection",
+      "source": "fc",
+      "target": "vtx",
+      "sourceHandle": "fc-UART1_GND",
+      "targetHandle": "vtx-GND",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART1_GND"
+        },
+        "target": {
+          "componentId": "vtx",
+          "portName": "GND"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART3_5V_OUT->cam:POWER_IN",
+      "type": "connection",
+      "source": "fc",
+      "target": "cam",
+      "sourceHandle": "fc-UART3_5V_OUT",
+      "targetHandle": "cam-POWER_IN",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART3_5V_OUT"
+        },
+        "target": {
+          "componentId": "cam",
+          "portName": "POWER_IN"
+        },
+        "metadata": {
+          "color": "red"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART3_GND->cam:GND",
+      "type": "connection",
+      "source": "fc",
+      "target": "cam",
+      "sourceHandle": "fc-UART3_GND",
+      "targetHandle": "cam-GND",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART3_GND"
+        },
+        "target": {
+          "componentId": "cam",
+          "portName": "GND"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "fc:UART3_CAMERA_IN->cam:VIDEO_OUT",
+      "type": "connection",
+      "source": "fc",
+      "target": "cam",
+      "sourceHandle": "fc-UART3_CAMERA_IN",
+      "targetHandle": "cam-VIDEO_OUT",
+      "data": {
+        "source": {
+          "componentId": "fc",
+          "portName": "UART3_CAMERA_IN"
+        },
+        "target": {
+          "componentId": "cam",
+          "portName": "VIDEO_OUT"
+        },
+        "metadata": {
+          "color": "yellow"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "esc:8_PIN_CABLE->fc:8_PIN_CABLE",
+      "type": "connection",
+      "source": "esc",
+      "target": "fc",
+      "sourceHandle": "esc-8_PIN_CABLE",
+      "targetHandle": "fc-8_PIN_CABLE",
+      "data": {
+        "source": {
+          "componentId": "esc",
+          "portName": "8_PIN_CABLE"
+        },
+        "target": {
+          "componentId": "fc",
+          "portName": "8_PIN_CABLE"
+        },
+        "metadata": {
+          "color": "rainbow"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "esc:PWM_OUT_1->motor:PWM_IN",
+      "type": "connection",
+      "source": "esc",
+      "target": "motor",
+      "sourceHandle": "esc-PWM_OUT_1",
+      "targetHandle": "motor-PWM_IN",
+      "data": {
+        "source": {
+          "componentId": "esc",
+          "portName": "PWM_OUT_1"
+        },
+        "target": {
+          "componentId": "motor",
+          "portName": "PWM_IN"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "esc:POWER_OUT_1->motor:POWER_IN",
+      "type": "connection",
+      "source": "esc",
+      "target": "motor",
+      "sourceHandle": "esc-POWER_OUT_1",
+      "targetHandle": "motor-POWER_IN",
+      "data": {
+        "source": {
+          "componentId": "esc",
+          "portName": "POWER_OUT_1"
+        },
+        "target": {
+          "componentId": "motor",
+          "portName": "POWER_IN"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    },
+    {
+      "id": "esc:GND_1->motor:GND",
+      "type": "connection",
+      "source": "esc",
+      "target": "motor",
+      "sourceHandle": "esc-GND_1",
+      "targetHandle": "motor-GND",
+      "data": {
+        "source": {
+          "componentId": "esc",
+          "portName": "GND_1"
+        },
+        "target": {
+          "componentId": "motor",
+          "portName": "GND"
+        },
+        "metadata": {
+          "color": "black"
+        },
+        "valid": true,
+        "errors": []
+      },
+      "animated": false
+    }
+  ]
+}

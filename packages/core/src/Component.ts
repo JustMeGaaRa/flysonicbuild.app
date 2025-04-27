@@ -1,4 +1,4 @@
-import { Port } from "./Port";
+import { Port } from "./Port.ts";
 
 export interface Component extends Record<string, unknown> {
     id: string;

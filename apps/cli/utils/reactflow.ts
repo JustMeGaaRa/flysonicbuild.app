@@ -1,5 +1,4 @@
-import { Component } from "../../../packages/core/src/Component.ts";
-import { Connection } from "../../../packages/core/src/Connection.ts";
+import { Component, Connection } from "core/src/index.ts";
 
 type Node<NodeData extends Record<string, unknown>> = {
     id: string;
@@ -17,12 +16,12 @@ type Edge<EdgeData extends Record<string, unknown>> = {
     targetHandle: string;
     animated: boolean;
     data: EdgeData;
-    style: { stroke: string; strokeWidth?: number };
+    style?: { stroke: string; strokeWidth?: number };
     label?: string;
 };
 
 const NODE_COMPONENT_TYPE = "component";
-const EDGE_SMOOTHSTEP_TYPE = "smoothstep";
+const EDGE_CONNECTION_TYPE = "connection";
 
 export function toReactFlow(system: {
     components: Component[];
@@ -48,16 +47,13 @@ export function toReactFlow(system: {
     for (const connection of system.connections) {
         edges.push({
             id: `${connection.source.componentId}:${connection.source.portName}->${connection.target.componentId}:${connection.target.portName}`,
-            type: EDGE_SMOOTHSTEP_TYPE,
+            type: EDGE_CONNECTION_TYPE,
             source: connection.source.componentId,
             target: connection.target.componentId,
-            sourceHandle: connection.source.portName,
-            targetHandle: connection.target.portName,
+            sourceHandle: `${connection.source.componentId}-${connection.source.portName}`,
+            targetHandle: `${connection.target.componentId}-${connection.target.portName}`,
             animated: !connection.valid,
             data: connection,
-            style: connection.valid
-                ? { stroke: "#00b894" }
-                : { stroke: "#d63031", strokeWidth: 2 },
             label: connection.description,
         });
     }

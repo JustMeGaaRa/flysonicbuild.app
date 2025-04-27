@@ -1,4 +1,4 @@
-import { ValidationError } from "./errors";
+import { ValidationError } from "./errors/index.ts";
 
 export interface Connection extends Record<string, unknown> {
     source: { componentId: string; portName: string };

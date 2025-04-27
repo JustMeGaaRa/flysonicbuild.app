@@ -1,4 +1,4 @@
-import { z } from "https://deno.land/x/zod@v3.19.1/mod.ts";
+import { z } from "npm:zod";
 
 // Position schema for node placement
 const PositionSchema = z.object({
@@ -9,9 +9,9 @@ const PositionSchema = z.object({
 // Basic Node schema
 export const NodeSchema = z.object({
     id: z.string(),
+    type: z.string().optional(),
     position: PositionSchema,
     data: z.record(z.any()), // replace z.any() with more specific schema if needed
-    type: z.string().optional(),
     sourcePosition: z.enum(["left", "right", "top", "bottom"]).optional(),
     targetPosition: z.enum(["left", "right", "top", "bottom"]).optional(),
     draggable: z.boolean().optional(),
@@ -22,9 +22,12 @@ export const NodeSchema = z.object({
 // Basic Edge schema
 export const EdgeSchema = z.object({
     id: z.string(),
+    type: z.string().optional(),
     source: z.string(),
     target: z.string(),
-    type: z.string().optional(),
+    sourceHandle: z.string().optional(),
+    targetHandle: z.string().optional(),
+    data: z.record(z.any()), // replace z.any() with more specific schema if needed
     animated: z.boolean().optional(),
     label: z.string().optional(),
 });

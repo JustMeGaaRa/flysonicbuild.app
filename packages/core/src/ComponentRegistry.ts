@@ -1,4 +1,4 @@
-import { Component } from "./Component";
+import { Component } from "./Component.ts";
 
 export class ComponentRegistry {
     private components: Map<string, Component> = new Map();

@@ -30,5 +30,6 @@
         }
     ],
     "deno.enable": true,
-    "deno.enablePaths": ["./apps/cli", "./development/"]
+    "deno.disablePaths": ["./apps/web"],
+    "typescript.preferences.importModuleSpecifierEnding": "minimal"
 }

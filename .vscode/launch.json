@@ -19,8 +19,7 @@
                 "--allow-all",
                 "main.ts",
                 "../../development/build/main.ts",
-                "--watch",
-                "--out=../../development/build/test_data/result.json"
+                "--watch"
             ],
             "attachSimplePort": 9229
         }

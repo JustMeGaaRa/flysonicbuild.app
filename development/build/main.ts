@@ -1,6 +1,6 @@
-import { Component } from "../../packages/core/src/Component.ts";
-import { ComponentRegistry } from "../../packages/core/src/ComponentRegistry.ts";
-import { System } from "../../packages/core/src/builders/SystemBuilder.ts";
+import { Component } from "core/src/Component.ts";
+import { ComponentRegistry } from "core/src/ComponentRegistry.ts";
+import { System } from "core/src/builders/SystemBuilder.ts";
 
 export const Rush_TinyTankVtx: Component = {
     id: "vtx",

@@ -1,7 +1,7 @@
-import { ErrorCode } from "./ErrorCode";
-import { ValidationError } from "./ValidationError";
-import { SourceMetadata } from "./SourceMetadata";
-import { ErrorRFC7807Format } from "./ErrorRFC7807Format";
+import { ErrorCode } from "./ErrorCode.ts";
+import { ValidationError } from "./ValidationError.ts";
+import { SourceMetadata } from "./SourceMetadata.ts";
+import { ErrorRFC7807Format } from "./ErrorRFC7807Format.ts";
 
 export class ErrorBuilder {
     private static readonly templates: Record<

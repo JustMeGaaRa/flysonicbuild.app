@@ -1,2 +1,2 @@
-export * from "./ConnectionBuilder";
-export * from "./SystemBuilder";
+export * from "./ConnectionBuilder.ts";
+export * from "./SystemBuilder.ts";

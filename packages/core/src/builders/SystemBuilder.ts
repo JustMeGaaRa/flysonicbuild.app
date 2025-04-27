@@ -4,7 +4,7 @@ import {
     ConnectionBuilder,
     ConnectionRegistry,
     Connection,
-} from "../";
+} from "../index.ts";
 
 export class SystemBuilder {
     public constructor(

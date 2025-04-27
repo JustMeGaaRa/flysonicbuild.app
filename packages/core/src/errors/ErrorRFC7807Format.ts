@@ -1,4 +1,4 @@
-import { SourceMetadata } from "./SourceMetadata";
+import { SourceMetadata } from "./SourceMetadata.ts";
 
 export interface ErrorRFC7807Format {
     /**

@@ -1,4 +1,4 @@
-import { Connection } from "./Connection";
+import { Connection } from "./Connection.ts";
 
 export class ConnectionRegistry {
     private connections: Connection[] = [];

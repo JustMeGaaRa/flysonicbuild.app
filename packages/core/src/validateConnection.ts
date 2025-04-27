@@ -1,7 +1,8 @@
-import { Component } from "./Component";
-import { Connection } from "./Connection";
-import { ErrorBuilder, ErrorCode, ValidationError } from "./errors";
-import { Port } from "./Port";
+import { Component } from "./Component.ts";
+import { Connection } from "./Connection.ts";
+import { ErrorBuilder, ErrorCode, ValidationError } from "./errors/index.ts";
+import { Port } from "./Port.ts";
+import { Protocol } from "./Protocol.ts";
 
 export function validatePort(
     sourcePort: Port,
@@ -84,9 +85,10 @@ export function validateConnection(
             );
         }
 
-        sourcePort.protocols.forEach((sourceProtocol) => {
+        sourcePort.protocols.forEach((sourceProtocol: Protocol) => {
             const targetProtocol = targetPort.protocols.find(
-                (targetProtocol) => sourceProtocol.name === targetProtocol.name
+                (targetProtocol: Protocol) =>
+                    sourceProtocol.name === targetProtocol.name
             );
 
             if (!targetProtocol) {

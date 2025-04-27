@@ -18,9 +18,7 @@ async function main() {
     });
     const [script] = _;
     if (!script) {
-        console.error(
-            "Usage: deno run --allow-read --allow-write main.ts <script.ts> [--out=out.json]"
-        );
+        console.error("Usage: flysonic <script.ts> [--out=out.json]");
         Deno.exit(1);
     }
     const outFile = typeof out === "string" ? out : "result.json";

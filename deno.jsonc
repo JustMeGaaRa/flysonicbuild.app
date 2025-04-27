@@ -1,0 +1,13 @@
+{
+    "importMap": "./import_map.json",
+    "tasks": {
+        "dev:cli": "deno run --unstable --allow-all ./apps/cli/mod.ts ./development/build/main.ts --watch",
+        "dev:api": "deno run --unstable --allow-all ./apps/api/mod.ts",
+        "install:cli": "deno install --global --unstable --allow-all -n flysonic ./apps/cli/mod.ts",
+        "compile:cli": "deno compile --unstable --allow-all --output ./apps/cli/flysonic ./apps/cli/mod.ts",
+        "lint": "deno lint",
+        "test": "deno test --unstable --allow-all --coverage=coverage",
+        "test-coverage": "deno test --unstable --allow-all --coverage=coverage",
+        "test-coverage-html": "deno coverage coverage/coverage.json --lcov > coverage/lcov.info && genhtml coverage/lcov.info -o coverage/html",
+    },
+}

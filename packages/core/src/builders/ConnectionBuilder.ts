@@ -1,4 +1,8 @@
-import { ComponentRegistry, ConnectionRegistry, validateConnection } from "../";
+import {
+    ComponentRegistry,
+    ConnectionRegistry,
+    validateConnection,
+} from "../index.ts";
 
 export class ConnectionBuilder {
     public constructor(
