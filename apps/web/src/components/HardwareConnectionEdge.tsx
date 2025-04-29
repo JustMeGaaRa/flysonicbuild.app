@@ -1,3 +1,5 @@
+import { Box, Text } from "@chakra-ui/react";
+import { Connection } from "@flysonic/core";
 import {
     BaseEdge,
     Edge,
@@ -5,9 +7,7 @@ import {
     EdgeProps,
     getBezierPath,
 } from "@xyflow/react";
-import { Connection } from "core";
 import { FC, Fragment } from "react";
-import { Box, Text } from "@chakra-ui/react";
 
 export const HardwareConnectionEdge: FC<EdgeProps<Edge<Connection>>> = ({
     id,

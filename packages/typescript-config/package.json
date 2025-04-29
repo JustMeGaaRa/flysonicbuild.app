@@ -1,5 +1,5 @@
 {
-    "name": "@repo/typescript-config",
+    "name": "@flysonic/typescript-config",
     "version": "0.0.0",
     "type": "module",
     "private": true,

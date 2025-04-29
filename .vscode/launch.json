@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Web",
+            "type": "firefox",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}",
+            "pathMappings": [
+                {
+                    "url": "http://localhost:5173/src",
+                    "path": "${workspaceFolder}/apps/web/src"
+                }
+            ]
+        },
+        {
             "name": "Launch Deno",
             "type": "node",
             "request": "launch",
@@ -17,8 +30,8 @@
                 "--unstable-sloppy-imports",
                 "--inspect-wait",
                 "--allow-all",
-                "main.ts",
-                "../../development/build/main.ts",
+                "mod.ts",
+                "../../development/sample/mod.ts",
                 "--watch"
             ],
             "attachSimplePort": 9229

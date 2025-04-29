@@ -1,4 +1,5 @@
-import { Component, Connection } from "core/src/index.ts";
+import { Component } from "@flysonic/core/Component.ts";
+import { Connection } from "@flysonic/core/Connection.ts";
 
 type Node<NodeData extends Record<string, unknown>> = {
     id: string;

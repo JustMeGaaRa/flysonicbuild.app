@@ -1,9 +1,9 @@
 {
-    "name": "@flysonic/core",
+    "name": "@flysonic/schema",
     "version": "0.1.0",
-    "description": "A core package with base abstractions.",
+    "description": "A schema package with schema for validation.",
     "keywords": [
-        "core"
+        "schema"
     ],
     "license": "MIT",
     "author": "Pavlo Hodysh",
@@ -13,6 +13,9 @@
     },
     "scripts": {
         "test": "test"
+    },
+    "dependencies": {
+        "zod": "^3.24.3"
     },
     "devDependencies": {
         "@flysonic/eslint-config": "workspace:*",

@@ -4,13 +4,6 @@ import { ErrorBuilder, ErrorCode, ValidationError } from "./errors/index.ts";
 import { Port } from "./Port.ts";
 import { Protocol } from "./Protocol.ts";
 
-export function validatePort(
-    sourcePort: Port,
-    targetPort: Port
-): ValidationError[] {
-    throw new Error("Not implemented yet");
-}
-
 export function isValidCommunicationDirection(
     sourcePort: Port,
     targetPort: Port

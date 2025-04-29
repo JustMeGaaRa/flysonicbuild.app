@@ -1,7 +1,9 @@
-import { ReactFlowData, ReactFlowSchema } from "./schema.ts";
+import { ReactFlowData, ReactFlowSchema } from "@flysonic/schema/schema.ts";
 import { toReactFlow } from "./utils/reactflow.ts";
 
-export async function validateAndParse(fileUrl: string) {
+export async function validateAndParse(
+    fileUrl: string
+): Promise<ReactFlowData> {
     const userScriptModule = await import(fileUrl);
 
     if (typeof userScriptModule.default !== "function") {

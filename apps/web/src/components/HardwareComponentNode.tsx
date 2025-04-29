@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { Component } from "@flysonic/core";
 import { Handle, Node, NodeProps, Position } from "@xyflow/react";
-import { Component } from "core";
 import { FC } from "react";
 
 export const HardwareComponentNode: FC<NodeProps<Node<Component>>> = ({

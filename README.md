@@ -22,45 +22,47 @@ The following section outlines some main features supported.
 
 Has the abstractions like component, interface, connector, protocol, and others. The component describes a logical component that can perform certain actions. An interface is the API that the component has and exposes. Each component might have one or more interfaces, where each interface has one or more protocols supported. A protocol is just a description and schema of how two components talk to each other. A connector is a definition that the component is able to connect to a certain interface via protocol. A component can have one or more connectors implemented.
 
-- [x] Data model
-- [x] Fluent builder
-- [x] Converter function from model to reactflow model
+-   [x] Data model
+-   [x] Fluent builder
+-   [x] Converter function from model to reactflow model
 
 ### Command Line Tool
 
 An application running in watch mode, monitoring the user defined typescript file. The file should be loaded and executed on changes. The changes are throttled, to not overwhelm the executing app. Given that the script is written properly and can be compiled, it is executed and produces a json metadata file with all required data for rendering the nodes on a canvas.
 
-- [x] Watcher mode to track changes
-- [x] Executor to build, convert, and save data as JSON
-- [x] Schema validation
+-   [x] Watcher mode to track changes
+-   [x] Executor to build, convert, and save data as JSON
+-   [x] Schema validation
 
 ### Fluent Builder UI
 
 The app is reading the json metadata and renders it as a set of nodes and connections. The app also allows to manually edit the nodes and connections, add new ones, and edit their properties. The manually made changes are synchronized to the json metadata file.
 
-- [x] Node-based rendering
-- [x] Custom node with ports
-- [x] Custom edge with colors
-- [ ] Real-time updates from from the script
-- [ ] Manually connect components
-- [ ] Manually add component type placeholder
-- [ ] Select component inside node header
+-   [x] Node-based rendering
+-   [x] Custom node with ports
+-   [x] Custom edge with colors
+-   [ ] Real-time updates from from the script
+-   [ ] Manually connect components
+-   [ ] Manually add component type placeholder
+-   [ ] Select component inside node header
+-   [ ] Auto layout for the graph
 
 ### Server Watcher API
 
-- [ ] Watcher mode to track changes
-- [ ] Updates via websockets
+-   [x] Watcher mode to track changes
+-   [x] Updates via websockets
+-   [ ] Schema validation and serialization
 
 ### Agentic Prompting
 
-- [x] JSON schema for structured responses
-- [ ] API to connect to ChatGPT platform
-- [ ] Streaming JSON data to show results progressively
+-   [x] JSON schema for structured responses
+-   [ ] API to connect to ChatGPT platform
+-   [ ] Streaming JSON data to show results progressively
 
 ### Visual Studio Code Extension
 
-- [ ] Run diagrams preview in web panel
-- [ ] Watch current document changes
+-   [ ] Run diagrams preview in web panel
+-   [ ] Watch current document changes
 
 ## What's inside?
 
@@ -76,12 +78,15 @@ This is a monorepo (created via turborepo) and includes the following packages a
 | **Fluent Builder UI**            | React, ReactFlow   |
 | **Visual Studio Code Extension** | Visual Studio COde |
 
-- `cli`: deno cli tool for executing and saving the model
-- `web`: another vanilla [vite](https://vitejs.dev) ts app
-- `@flysonic/core`: a core package with data and builder models
-- `@flysonic/ui`: a component & utility shared library
-- `@flysonic/eslint-config`: shared `eslint` configurations
-- `@flysonic/typescript-config`: `tsconfig.json`s used throughout the monorepo
+-   `@flysonic/cli`: a cli tool for executing and saving the build
+-   `@flysonic/web`: a fluent node-based ui builder application
+-   `@flysonic/api`: a server api for watching and serving updates via websockets
+-   `@flysonic/core`: a core package with core types and model builder
+-   `@flysonic/watcher`: a library with shared functions to watch and load user script
+-   `@flysonic/schema`: a shared library with serde schema
+-   `@flysonic/ui`: a shared component library
+-   `@flysonic/eslint-config`: shared `eslint` configurations
+-   `@flysonic/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -89,6 +94,6 @@ Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 This Turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+-   [TypeScript](https://www.typescriptlang.org/) for static type checking
+-   [ESLint](https://eslint.org/) for code linting
+-   [Prettier](https://prettier.io) for code formatting

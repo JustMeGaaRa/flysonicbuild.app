@@ -1,5 +1,8 @@
 {
     "imports": {
-        "core/": "./packages/core/"
+        "@flysonic/core/": "./packages/core/src/",
+        "@flysonic/schema/": "./packages/schema/src/",
+        "@flysonic/watcher/": "./packages/watcher/src/",
+        "zod": "https://esm.sh/zod@^3.24.3"
     }
 }

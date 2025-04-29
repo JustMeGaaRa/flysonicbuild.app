@@ -1,8 +1,10 @@
+import { executeSingleMode } from "@flysonic/watcher/runner.ts";
+import { startWatherMode } from "@flysonic/watcher/watcher.ts";
 import { parseArgs } from "jsr:@std/cli/parse-args";
-import { runWatchMode } from "./watcher.ts";
-import { runSingleMode } from "./runner.ts";
+import { ReactFlowData } from "@flysonic/schema/schema.ts";
 
 async function main() {
+    // TODO: print help message
     const {
         _,
         watch,
@@ -16,16 +18,25 @@ async function main() {
             watch: false,
         },
     });
-    const [script] = _;
-    if (!script) {
+
+    const [scriptPath] = _;
+
+    if (!scriptPath || typeof scriptPath !== "string") {
         console.error("Usage: flysonic <script.ts> [--out=out.json]");
         Deno.exit(1);
     }
-    const outFile = typeof out === "string" ? out : "result.json";
 
-    const result = watch
-        ? await runWatchMode(script as string, outFile)
-        : await runSingleMode(script as string, outFile);
+    const outFile = typeof out === "string" ? out : "result.json";
+    const saveAsJson = async (result: ReactFlowData) => {
+        await Deno.writeTextFile(outFile, JSON.stringify(result, null, 2));
+    };
+
+    const executor = watch
+        ? startWatherMode({ scriptPath, handler: saveAsJson })
+        : executeSingleMode({ scriptPath, handler: saveAsJson });
+
+    // wait until watcher or runner are done
+    await executor;
 }
 
 if (import.meta.main) {

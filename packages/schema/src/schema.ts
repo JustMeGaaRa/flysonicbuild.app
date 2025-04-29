@@ -1,4 +1,4 @@
-import { z } from "npm:zod";
+import { z } from "zod";
 
 // Position schema for node placement
 const PositionSchema = z.object({
