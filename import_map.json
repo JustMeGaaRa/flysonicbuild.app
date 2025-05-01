@@ -3,6 +3,8 @@
         "@flysonic/core/": "./packages/core/src/",
         "@flysonic/schema/": "./packages/schema/src/",
         "@flysonic/watcher/": "./packages/watcher/src/",
-        "zod": "https://esm.sh/zod@^3.24.3"
+        "zod": "https://esm.sh/zod@^3.24.3",
+        "elkjs": "https://esm.sh/elkjs@^0.1.0",
+        "@dagrejs/dagre": "https://esm.sh/@dagrejs/dagre@^1.1.4"
     }
 }

@@ -3,6 +3,7 @@
   "specifiers": {
     "jsr:@std/cli@*": "1.0.17",
     "jsr:@std/path@*": "1.0.9",
+    "npm:@dagrejs/dagre@1.1.4": "1.1.4",
     "npm:@types/node@*": "22.12.0",
     "npm:eslint@^8.57.0": "8.57.1",
     "npm:prettier@^3.2.5": "3.5.3",
@@ -21,6 +22,15 @@
     }
   },
   "npm": {
+    "@dagrejs/dagre@1.1.4": {
+      "integrity": "sha512-QUTc54Cg/wvmlEUxB+uvoPVKFazM1H18kVHBQNmK2NbrDR5ihOCR6CXLnDSZzMcSQKJtabPUWridBOlJM3WkDg==",
+      "dependencies": [
+        "@dagrejs/graphlib"
+      ]
+    },
+    "@dagrejs/graphlib@2.2.4": {
+      "integrity": "sha512-mepCf/e9+SKYy1d02/UkvSy6+6MoyXhVxP8lLDfA7BPE1X1d4dR0sZznmbM8/XVJ1GPM+Svnx7Xj6ZweByWUkw=="
+    },
     "@esbuild/aix-ppc64@0.25.3": {
       "integrity": "sha512-W8bFfPA8DowP8l//sxjJLSLkD8iEjMc7cBVyP+u4cEv9sM7mdUCkgsj+t0n/BWPFtv7WWCN5Yzj0N6FJNUUqBQ=="
     },
@@ -1059,17 +1069,22 @@
   },
   "redirects": {
     "https://deno.land/std@0.203.0/ws/": "https://deno.land/std@0.203.0/ws",
+    "https://esm.sh/@dagrejs/dagre@^1.1.4": "https://esm.sh/@dagrejs/dagre@1.1.4",
     "https://esm.sh/zod@^3.24.3": "https://esm.sh/zod@3.24.3"
   },
   "remote": {
     "https://deno.land/std@0.201.0/async/delay.ts": "a6142eb44cdd856b645086af2b811b1fcce08ec06bb7d50969e6a872ee9b8659",
     "https://deno.land/std@0.201.0/http/server.ts": "1b2403b3c544c0624ad23e8ca4e05877e65380d9e0d75d04957432d65c3d5f41",
+    "https://esm.sh/@dagrejs/dagre@1.1.4": "71a49a5f40bb3c4b27f7ef027a087e8a02924c864d946c11d26b784db661f144",
+    "https://esm.sh/@dagrejs/dagre@1.1.4/denonext/dagre.mjs": "dddabbc63465af5abe06031ad99541cde253bf8ff301fb3f5693d6a9d3b50a8b",
+    "https://esm.sh/@dagrejs/graphlib@2.2.4/denonext/graphlib.mjs": "26ca336ecd484269e0e85bfb5b2bb08e2b64ded98a415ad387e60dd2f15e4b08",
     "https://esm.sh/zod@3.24.3": "8fb963869b1a83e910ff2fc4e64af7918e34b1350088455141b653233f274395",
     "https://esm.sh/zod@3.24.3/denonext/zod.mjs": "46c4acb1f87caf349962b648f519cbf3999a8746fb40df0331ad2d3b62a197c0"
   },
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@dagrejs/dagre@1.1.4",
         "npm:eslint@^8.57.0",
         "npm:prettier@^3.2.5",
         "npm:turbo@^2.5.0",

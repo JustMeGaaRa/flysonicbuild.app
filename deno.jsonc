@@ -2,7 +2,9 @@
     "importMap": "./import_map.json",
     "tasks": {
         "dev:cli": "deno run --unstable --allow-all ./apps/cli/mod.ts",
+        "dev:cli:watch": "deno run --unstable --allow-all --watch ./apps/cli/mod.ts",
         "dev:api": "deno run --unstable --allow-net=0.0.0.0:7000 --allow-read ./apps/api/mod.ts",
+        "dev:api:watch": "deno run --unstable --allow-net=0.0.0.0:7000 --allow-read --watch ./apps/api/mod.ts",
         "dev:websocket": "deno run --unstable --allow-all",
         "install:cli": "deno install --global --unstable --allow-all -n flysonic ./apps/cli/mod.ts",
         "compile:cli": "deno compile --unstable --allow-all --output ./apps/cli/flysonic ./apps/cli/mod.ts",

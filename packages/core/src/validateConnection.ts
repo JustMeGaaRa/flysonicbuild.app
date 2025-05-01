@@ -129,8 +129,14 @@ export function validateConnection(
     }
 
     return {
-        source: { componentId: sourceComponent.id, portName: sourcePortName },
-        target: { componentId: targetComponent.id, portName: targetPortName },
+        source:
+            sourcePort?.direction === "output"
+                ? { componentId: sourceComponent.id, portName: sourcePortName }
+                : { componentId: targetComponent.id, portName: targetPortName },
+        target:
+            targetPort?.direction === "input"
+                ? { componentId: targetComponent.id, portName: targetPortName }
+                : { componentId: sourceComponent.id, portName: sourcePortName },
         metadata: metadata,
         valid: errors.length === 0,
         errors: errors.length > 0 ? errors : [],

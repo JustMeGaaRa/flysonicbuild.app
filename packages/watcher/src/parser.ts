@@ -1,5 +1,6 @@
 import { ReactFlowData, ReactFlowSchema } from "@flysonic/schema/schema.ts";
 import { toReactFlow } from "./utils/reactflow.ts";
+import { withDagreeAutoLayout } from "./utils/autolayout.ts";
 
 export async function validateAndParse(
     fileUrl: string
@@ -14,7 +15,7 @@ export async function validateAndParse(
     const result: unknown = await userScriptModule.default();
 
     // Validate against Zod schema
-    const reactFlow = toReactFlow(result as any);
+    const reactFlow = withDagreeAutoLayout(toReactFlow(result as any));
     const validated: ReactFlowData = ReactFlowSchema.parse(reactFlow);
 
     return validated;

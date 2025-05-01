@@ -45,7 +45,7 @@ The app is reading the json metadata and renders it as a set of nodes and connec
 -   [ ] Manually connect components
 -   [ ] Manually add component type placeholder
 -   [ ] Select component inside node header
--   [ ] Auto layout for the graph
+-   [x] Auto layout for the graph
 
 ### Server Watcher API
 

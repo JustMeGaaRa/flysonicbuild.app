@@ -6,6 +6,9 @@
         "lint": "turbo run lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\""
     },
+    "dependencies": {
+        "@dagrejs/dagre": "1.1.4"
+    },
     "devDependencies": {
         "eslint": "^8.57.0",
         "prettier": "^3.2.5",
