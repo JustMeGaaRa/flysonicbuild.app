@@ -3,13 +3,13 @@ import { executeSingleMode } from "./runner.ts";
 import { debounce } from "./utils/debounce.ts";
 
 const fileMonitoringEventTypes: string[] = ["modify", "create"];
+const debouncedExecutor = debounce(executeSingleMode, 100);
 
 export async function startWatherMode(options: {
     scriptPath: string;
     signal?: AbortSignal;
     handler: (result: ReactFlowData) => void;
 }): Promise<void> {
-    const debouncedExecutor = debounce(executeSingleMode, 100);
     await debouncedExecutor(options);
 
     console.log(`Watching ${options.scriptPath} ...`);

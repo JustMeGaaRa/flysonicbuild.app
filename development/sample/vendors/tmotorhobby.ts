@@ -1,7 +1,7 @@
 import { Component } from "@flysonic/core/Component.ts";
 
-export const F1404_3800KV: Component = {
-    id: "motor",
+const F1404_3800KV = (): Component => ({
+    id: `tmotorhobby-motor-${crypto.randomUUID()}`,
     name: "T-Motor F1404 3800KV",
     ports: [
         {
@@ -23,4 +23,16 @@ export const F1404_3800KV: Component = {
             protocols: [{ name: "power" }],
         },
     ],
+});
+
+const TMotorHobby_F1404_2900KV = F1404_3800KV;
+const TMotorHobby_F1404_3800KV = F1404_3800KV;
+const TMotorHobby_F1303_4900KV = F1404_3800KV;
+const TMotorHobby_F1303_5000KV = F1404_3800KV;
+
+export default {
+    TMotorHobby_F1404_2900KV,
+    TMotorHobby_F1404_3800KV,
+    TMotorHobby_F1303_4900KV,
+    TMotorHobby_F1303_5000KV,
 };

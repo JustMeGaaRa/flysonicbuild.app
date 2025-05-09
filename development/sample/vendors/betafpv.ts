@@ -1,12 +1,12 @@
 import { Component } from "@flysonic/core/Component.ts";
 
-export const ExpressLRS_NanoRx: Component = {
-    id: "rx",
+const ExpressLRS_NanoRx = (): Component => ({
+    id: `betafpv-antenna-${crypto.randomUUID()}`,
     name: "BetaFPV ELRS Nano RX",
     ports: [
         {
-            name: "TX",
-            direction: "output",
+            name: "RX",
+            direction: "input",
             kind: "logical",
             protocols: [
                 { name: "UART", constraints: { baud_rate: 115200 } },
@@ -14,8 +14,8 @@ export const ExpressLRS_NanoRx: Component = {
             ],
         },
         {
-            name: "RX",
-            direction: "input",
+            name: "TX",
+            direction: "output",
             kind: "logical",
             protocols: [
                 { name: "UART", constraints: { baud_rate: 115200 } },
@@ -50,4 +50,14 @@ export const ExpressLRS_NanoRx: Component = {
             ],
         },
     ],
+});
+
+const BetaFpv_ExpressLRS_NanoRx_2_4GHz = ExpressLRS_NanoRx;
+const BetaFpv_ExpressLRS_NanoRx_915MHz = ExpressLRS_NanoRx;
+const BetaFpv_ExpressLRS_NanoRx_868MHz = ExpressLRS_NanoRx;
+
+export default {
+    BetaFpv_ExpressLRS_NanoRx_2_4GHz,
+    BetaFpv_ExpressLRS_NanoRx_915MHz,
+    BetaFpv_ExpressLRS_NanoRx_868MHz,
 };

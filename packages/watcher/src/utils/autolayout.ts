@@ -6,8 +6,8 @@ const nodeHeight = 50;
 const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
 const dagreOptions = {
     rankdir: "LR",
-    nodesep: 200,
-    edgeSep: 200,
+    nodesep: 100,
+    edgeSep: 100,
     rankSep: 200,
 };
 

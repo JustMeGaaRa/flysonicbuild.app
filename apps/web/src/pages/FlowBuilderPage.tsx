@@ -1,17 +1,23 @@
-import { HardwareComponentNode } from "@/components/HardwareComponentNode";
-import { HardwareConnectionEdge } from "@/components/HardwareConnectionEdge";
+import {
+    ComponentNode,
+    ConnectionEdge,
+    HardwareComponentNode,
+    HardwareConnectionEdge,
+} from "@/components";
 import { Toaster, toaster } from "@/components/ui/toaster";
-import { useWebsocket } from "@/hooks";
+import { useAutoLayout, useWebsocket } from "@/hooks";
 import { Box } from "@chakra-ui/react";
 import {
+    addEdge,
     Background,
+    Connection,
+    Controls,
     ReactFlow,
     useEdgesState,
     useNodesState,
 } from "@xyflow/react";
-import { FC, useCallback } from "react";
-
 import "@xyflow/react/dist/style.css";
+import { FC, useCallback } from "react";
 
 const NodeTypes = {
     component: HardwareComponentNode,
@@ -23,15 +29,23 @@ const EdgeTypes = {
 const ConnectionStatusToastId = "connection-status";
 
 export const FlowBuilderPage: FC = () => {
-    const [nodes, setNodes, onNodesChange] = useNodesState([]);
-    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+    const [nodes, setNodes, onNodesChange] = useNodesState<ComponentNode>([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState<ConnectionEdge>([]);
+
+    const onConnect = useCallback(
+        (params: Connection) => {
+            setEdges((state) => addEdge(params, state));
+        },
+        [setEdges]
+    );
 
     const onWebsocketConnected = useCallback(() => {
         toaster.update(ConnectionStatusToastId, {
             title: "Connection Established",
             description: "Server connection established successfully.",
             type: "success",
-            duration: 5000,
+            duration: 3000,
+            closable: true,
         });
     }, []);
 
@@ -52,6 +66,7 @@ export const FlowBuilderPage: FC = () => {
             description: "Server connection lost. Retrying connection...",
             type: "loading",
             id: ConnectionStatusToastId,
+            closable: false,
         });
     }, []);
 
@@ -62,6 +77,7 @@ export const FlowBuilderPage: FC = () => {
         onMessage: onWebsocketMessage,
         onDisconnect: onWebsocketDisconnect,
     });
+    useAutoLayout();
 
     return (
         <Box height={"100vh"} width={"100vw"}>
@@ -72,11 +88,15 @@ export const FlowBuilderPage: FC = () => {
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
                 nodeTypes={NodeTypes}
                 edgeTypes={EdgeTypes}
+                snapGrid={[20, 20]}
+                snapToGrid
                 fitView
             >
                 <Background bgColor={"var(--chakra-colors-gray-subtle)"} />
+                <Controls position={"bottom-left"} />
             </ReactFlow>
         </Box>
     );

@@ -1,6 +1,7 @@
+import { Component } from "@flysonic/core/Component.ts";
+import { Connection } from "@flysonic/core/Connection.ts";
 import { ReactFlowData, ReactFlowSchema } from "@flysonic/schema/schema.ts";
 import { toReactFlow } from "./utils/reactflow.ts";
-import { withDagreeAutoLayout } from "./utils/autolayout.ts";
 
 export async function validateAndParse(
     fileUrl: string
@@ -12,11 +13,14 @@ export async function validateAndParse(
     }
 
     // Execute the user-provided function
-    const result: unknown = await userScriptModule.default();
+    const system = (await userScriptModule.default()) as {
+        components: Component[];
+        connections: Connection[];
+    };
 
     // Validate against Zod schema
-    const reactFlow = withDagreeAutoLayout(toReactFlow(result as any));
-    const validated: ReactFlowData = ReactFlowSchema.parse(reactFlow);
+    const graph = toReactFlow(system);
+    const validated = ReactFlowSchema.parse(graph);
 
     return validated;
 }

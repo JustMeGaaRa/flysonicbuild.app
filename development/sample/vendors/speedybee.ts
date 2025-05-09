@@ -1,7 +1,7 @@
 import { Component } from "@flysonic/core/Component.ts";
 
-export const F405_Mini_FC: Component = {
-    id: "fc",
+const F405_Mini_FC = (): Component => ({
+    id: `fc-${crypto.randomUUID()}`,
     name: "SpeedyBee F405 Mini FC",
     ports: [
         {
@@ -86,12 +86,24 @@ export const F405_Mini_FC: Component = {
             protocols: [{ name: "power" }],
         },
     ],
-};
+});
 
-export const SpeedyBee_BLS4In1_MiniESC: Component = {
-    id: "esc",
+const BLS_Mini_4In1ESC = (): Component => ({
+    id: `esc-${crypto.randomUUID()}`,
     name: "SpeedyBee BLS 4-in-1 ESC",
     ports: [
+        {
+            name: "POWER_IN",
+            direction: "input",
+            kind: "physical",
+            protocols: [{ name: "power", constraints: { voltage: 14.8 } }],
+        },
+        {
+            name: "GND_IN",
+            direction: "bidirectional",
+            kind: "physical",
+            protocols: [{ name: "ground" }],
+        },
         {
             name: "8_PIN_CABLE",
             direction: "output",
@@ -171,4 +183,12 @@ export const SpeedyBee_BLS4In1_MiniESC: Component = {
             protocols: [{ name: "power", constraints: { voltage: 5 } }],
         },
     ],
+});
+
+const SpeedyBee_FC_F405Mini = F405_Mini_FC;
+const SpeedyBee_ESC_BLSMini4In1 = BLS_Mini_4In1ESC;
+
+export default {
+    SpeedyBee_FC_F405Mini,
+    SpeedyBee_ESC_BLSMini4In1,
 };

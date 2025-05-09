@@ -1,15 +1,9 @@
 import { Component } from "@flysonic/core/index.ts";
 
-export const Ratel_2: Component = {
-    id: "cam",
+const Ratel_2 = (): Component => ({
+    id: `caddx-camera-${crypto.randomUUID()}`,
     name: "Caddx Ratel 2",
     ports: [
-        {
-            name: "VIDEO",
-            direction: "output",
-            kind: "physical",
-            protocols: [{ name: "CVBS", constraints: { format: "NTSC" } }],
-        },
         {
             name: "POWER",
             direction: "input",
@@ -17,10 +11,26 @@ export const Ratel_2: Component = {
             protocols: [{ name: "power", constraints: { voltage: 5 } }],
         },
         {
+            name: "VIDEO",
+            direction: "output",
+            kind: "physical",
+            protocols: [{ name: "CVBS", constraints: { format: "NTSC" } }],
+        },
+        {
             name: "GND",
-            direction: "none",
+            direction: "bidirectional",
             kind: "physical",
             protocols: [{ name: "ground" }],
         },
     ],
+});
+
+const CaddxFpv_Ratel2 = Ratel_2;
+const CaddxFpv_RatelPro = Ratel_2;
+const CaddxFpv_BabyRatel2 = Ratel_2;
+
+export default {
+    CaddxFpv_Ratel2,
+    CaddxFpv_RatelPro,
+    CaddxFpv_BabyRatel2,
 };

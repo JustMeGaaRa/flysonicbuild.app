@@ -6,3 +6,4 @@ export * from "./Port.ts";
 export * from "./Protocol.ts";
 export * from "./validateConnection.ts";
 export * from "./builders/index.ts";
+export * from "./utils/index.ts";

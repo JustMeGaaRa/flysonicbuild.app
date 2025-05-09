@@ -41,7 +41,7 @@ The app is reading the json metadata and renders it as a set of nodes and connec
 -   [x] Node-based rendering
 -   [x] Custom node with ports
 -   [x] Custom edge with colors
--   [ ] Real-time updates from from the script
+-   [x] Real-time updates from from the script
 -   [ ] Manually connect components
 -   [ ] Manually add component type placeholder
 -   [ ] Select component inside node header

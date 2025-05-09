@@ -1,7 +1,7 @@
 import { Component } from "@flysonic/core/Component.ts";
 
-export const Cherry_Antenna: Component = {
-    id: "antenna",
+const Cherry_Antenna = (): Component => ({
+    id: `rushfpv-antenna-${crypto.randomUUID()}`,
     name: "Rush Cherry Antenna",
     ports: [
         {
@@ -36,26 +36,12 @@ export const Cherry_Antenna: Component = {
             ],
         },
     ],
-};
+});
 
-export const Rush_TinyTankVtx: Component = {
-    id: "vtx",
+const TinyTank_VTX = (): Component => ({
+    id: `rushfpv-vtx-${crypto.randomUUID()}`,
     name: "Rush Tiny Tank VTX",
     ports: [
-        {
-            name: "POWER",
-            direction: "input",
-            kind: "physical",
-            description: "Power supply for the VTX",
-            protocols: [{ name: "power", constraints: { voltage: 5 } }],
-        },
-        {
-            name: "GND",
-            direction: "bidirectional",
-            kind: "physical",
-            description: "Ground reference for all signals",
-            protocols: [{ name: "ground" }],
-        },
         {
             name: "DATA",
             direction: "input",
@@ -75,6 +61,20 @@ export const Rush_TinyTankVtx: Component = {
             protocols: [{ name: "CVBS", constraints: { format: "NTSC" } }],
         },
         {
+            name: "GND",
+            direction: "bidirectional",
+            kind: "physical",
+            description: "Ground reference for all signals",
+            protocols: [{ name: "ground" }],
+        },
+        {
+            name: "POWER",
+            direction: "input",
+            kind: "physical",
+            description: "Power supply for the VTX",
+            protocols: [{ name: "power", constraints: { voltage: 5 } }],
+        },
+        {
             name: "CONNECTOR_OUT",
             direction: "output",
             kind: "physical",
@@ -89,4 +89,16 @@ export const Rush_TinyTankVtx: Component = {
             ],
         },
     ],
+});
+
+const RushFPV_Antenna_Cherry_RHCP = Cherry_Antenna;
+const RushFPV_Antenna_Cherry_LHCP = Cherry_Antenna;
+const RushFPV_VTX_TinyTank_CH48 = TinyTank_VTX;
+const RushFPV_VTX_TinyTank_CH32 = TinyTank_VTX;
+
+export default {
+    RushFPV_Antenna_Cherry_RHCP,
+    RushFPV_Antenna_Cherry_LHCP,
+    RushFPV_VTX_TinyTank_CH48,
+    RushFPV_VTX_TinyTank_CH32,
 };
