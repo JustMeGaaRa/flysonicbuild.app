@@ -1,27 +1,33 @@
 import {
     Component,
-    ComponentRegistry,
+    ComponentService,
     ConnectionBuilder,
-    ConnectionRegistry,
+    ConnectionService,
     Connection,
 } from "../index.ts";
 
 export class SystemBuilder {
     public constructor(
-        private componentRegistry: ComponentRegistry,
-        private connectionRegistry: ConnectionRegistry
+        private componentService: ComponentService,
+        private connectionService: ConnectionService
     ) {}
 
     connect(
-        output: string,
-        input: string,
+        sourceComponent: Component,
+        targetComponent: Component,
         configure: (builder: ConnectionBuilder) => void
     ): this {
+        if (!this.componentService.hasComponent(sourceComponent.id)) {
+            this.componentService.addComponent(sourceComponent);
+        }
+        if (!this.componentService.hasComponent(targetComponent.id)) {
+            this.componentService.addComponent(targetComponent);
+        }
         const builder = new ConnectionBuilder(
-            this.componentRegistry,
-            this.connectionRegistry,
-            output,
-            input
+            this.componentService,
+            this.connectionService,
+            sourceComponent.id,
+            targetComponent.id
         );
         configure(builder);
         return this;
@@ -29,8 +35,8 @@ export class SystemBuilder {
 
     build(): { components: Component[]; connections: Connection[] } {
         return {
-            components: this.componentRegistry.getComponents(),
-            connections: this.connectionRegistry.getConnections(),
+            components: this.componentService.getComponents(),
+            connections: this.connectionService.getConnections(),
         };
     }
 }
@@ -38,7 +44,9 @@ export class SystemBuilder {
 export class System {
     private constructor() {}
 
-    static create(componentRegistry: ComponentRegistry): SystemBuilder {
-        return new SystemBuilder(componentRegistry, new ConnectionRegistry());
+    static create(): SystemBuilder {
+        const componentService = new ComponentService();
+        const connectionService = new ConnectionService();
+        return new SystemBuilder(componentService, connectionService);
     }
 }

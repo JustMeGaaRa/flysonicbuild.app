@@ -26,7 +26,7 @@ export class ErrorBuilder {
             status: 422,
             detail: `Incompatible '${ctx.sourcePortKind}' kind found for source port '${ctx.sourcePortName}' and target port '${ctx.targetPortName}' with kind '${ctx.targetPortKind}'`,
         }),
-        [ErrorCode.PROTOCOL_NOT_FOUND]: (ctx: SourceMetadata) => ({
+        [ErrorCode.PROTOCOL_NOT_SUPPORTED]: (ctx: SourceMetadata) => ({
             type: "https://docs.airborne.tech/errors#PROTOCOL_NOT_FOUND",
             title: "No compatible protocols",
             status: 422,

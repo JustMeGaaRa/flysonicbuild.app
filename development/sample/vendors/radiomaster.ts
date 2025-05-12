@@ -1,4 +1,5 @@
 import { Component } from "@flysonic/core/Component.ts";
+import { ComponentRegistry } from "@flysonic/core/ComponentRegistry.ts";
 
 const RadioMaster = (): Component => ({
     id: `radiomaster-${crypto.randomUUID()}`,
@@ -23,6 +24,15 @@ const RadioMaster = (): Component => ({
 });
 
 const RadioMaster_TX12 = RadioMaster;
+
+(function registerComponents() {
+    const remote = { type: "Remote Control", vendor: "RadioMaster" };
+    ComponentRegistry.getInstance().register({
+        ...remote,
+        name: "RadioMaster TX12",
+        create: RadioMaster_TX12,
+    });
+})();
 
 export default {
     RadioMaster_TX12,

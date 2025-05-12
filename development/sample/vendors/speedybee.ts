@@ -1,4 +1,5 @@
 import { Component } from "@flysonic/core/Component.ts";
+import { ComponentRegistry } from "@flysonic/core/ComponentRegistry.ts";
 
 const F405_Mini_FC = (): Component => ({
     id: `fc-${crypto.randomUUID()}`,
@@ -90,7 +91,7 @@ const F405_Mini_FC = (): Component => ({
 
 const BLS_Mini_4In1ESC = (): Component => ({
     id: `esc-${crypto.randomUUID()}`,
-    name: "SpeedyBee BLS 4-in-1 ESC",
+    name: "SpeedyBee BLS Mini 4-in-1 ESC",
     ports: [
         {
             name: "POWER_IN",
@@ -111,82 +112,50 @@ const BLS_Mini_4In1ESC = (): Component => ({
             protocols: [{ name: "power" }],
         },
         {
-            name: "PWM_1",
+            name: "PWM_1_OUT",
             direction: "output",
             kind: "logical",
             protocols: [{ name: "pwm" }],
         },
         {
-            name: "GND_1",
-            direction: "bidirectional",
-            kind: "physical",
-            protocols: [{ name: "ground" }],
-        },
-        {
-            name: "POWER_1",
-            direction: "output",
-            kind: "physical",
-            protocols: [{ name: "power", constraints: { voltage: 5 } }],
-        },
-        {
-            name: "PWM_2",
+            name: "PWM_2_OUT",
             direction: "output",
             kind: "logical",
             protocols: [{ name: "pwm" }],
         },
         {
-            name: "GND_2",
-            direction: "bidirectional",
-            kind: "physical",
-            protocols: [{ name: "ground" }],
-        },
-        {
-            name: "POWER_2",
-            direction: "output",
-            kind: "physical",
-            protocols: [{ name: "power", constraints: { voltage: 5 } }],
-        },
-        {
-            name: "PWM_3",
+            name: "PWM_3_OUT",
             direction: "output",
             kind: "logical",
             protocols: [{ name: "pwm" }],
         },
         {
-            name: "GND_3",
-            direction: "bidirectional",
-            kind: "physical",
-            protocols: [{ name: "ground" }],
-        },
-        {
-            name: "POWER_3",
-            direction: "output",
-            kind: "physical",
-            protocols: [{ name: "power", constraints: { voltage: 5 } }],
-        },
-        {
-            name: "PWM_4",
+            name: "PWM_4_OUT",
             direction: "output",
             kind: "logical",
             protocols: [{ name: "pwm" }],
-        },
-        {
-            name: "GND_4",
-            direction: "bidirectional",
-            kind: "physical",
-            protocols: [{ name: "ground" }],
-        },
-        {
-            name: "POWER_4",
-            direction: "output",
-            kind: "physical",
-            protocols: [{ name: "power", constraints: { voltage: 5 } }],
         },
     ],
 });
 
 const SpeedyBee_FC_F405Mini = F405_Mini_FC;
 const SpeedyBee_ESC_BLSMini4In1 = BLS_Mini_4In1ESC;
+
+(function registerComponents() {
+    const fc = { type: "Flight Controller", vendor: "SpeedyBee" };
+    const esc = { type: "Electronic Speed Controller", vendor: "SpeedyBee" };
+    ComponentRegistry.getInstance()
+        .register({
+            ...fc,
+            name: "SpeedyBee F405 Mini FC",
+            create: SpeedyBee_FC_F405Mini,
+        })
+        .register({
+            ...esc,
+            name: "SpeedyBee BLS Mini 4-in-1 ESC",
+            create: SpeedyBee_ESC_BLSMini4In1,
+        });
+})();
 
 export default {
     SpeedyBee_FC_F405Mini,

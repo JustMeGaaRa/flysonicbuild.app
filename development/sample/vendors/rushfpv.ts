@@ -1,4 +1,5 @@
 import { Component } from "@flysonic/core/Component.ts";
+import { ComponentRegistry } from "@flysonic/core/ComponentRegistry.ts";
 
 const Cherry_Antenna = (): Component => ({
     id: `rushfpv-antenna-${crypto.randomUUID()}`,
@@ -95,6 +96,32 @@ const RushFPV_Antenna_Cherry_RHCP = Cherry_Antenna;
 const RushFPV_Antenna_Cherry_LHCP = Cherry_Antenna;
 const RushFPV_VTX_TinyTank_CH48 = TinyTank_VTX;
 const RushFPV_VTX_TinyTank_CH32 = TinyTank_VTX;
+
+(function registerComponents() {
+    const antenna = { type: "antenna", vendor: "RushFPV" };
+    const vtx = { type: "VTX", vendor: "RushFPV" };
+    ComponentRegistry.getInstance()
+        .register({
+            ...antenna,
+            name: "Rush Cherry Antenna RHCP",
+            create: RushFPV_Antenna_Cherry_RHCP,
+        })
+        .register({
+            ...antenna,
+            name: "Rush Cherry Antenna LHCP",
+            create: RushFPV_Antenna_Cherry_LHCP,
+        })
+        .register({
+            ...vtx,
+            name: "Rush Tiny Tank VTX CH48",
+            create: RushFPV_VTX_TinyTank_CH48,
+        })
+        .register({
+            ...vtx,
+            name: "Rush Tiny Tank VTX CH32",
+            create: RushFPV_VTX_TinyTank_CH32,
+        });
+})();
 
 export default {
     RushFPV_Antenna_Cherry_RHCP,

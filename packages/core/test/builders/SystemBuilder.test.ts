@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { Component, ComponentRegistry, System } from "../src";
+import { Component, System } from "../../src/index.ts";
 
 export const Rush_TinyTankVtx: Component = {
     id: "vtx",
@@ -398,12 +398,8 @@ export const TMotor_F1404_3800KV: Component = {
 };
 
 test("Should create a valid connection for rush vtx and antenna", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(Rush_TinyTankVtx)
-        .registerComponent(Rush_CherryAntenna);
-
-    const system = System.create(registry)
-        .connect(Rush_TinyTankVtx.id, Rush_CherryAntenna.id, (connection) =>
+    const system = System.create()
+        .connect(Rush_TinyTankVtx, Rush_CherryAntenna, (connection) =>
             connection.port("RF_OUT", "RF_IN")
         )
         .build();
@@ -416,12 +412,8 @@ test("Should create a valid connection for rush vtx and antenna", () => {
 });
 
 test("Should create a valid connection for rush vtx and fc", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(Rush_TinyTankVtx)
-        .registerComponent(SpeedyBee_F405_MiniFC);
-
-    const system = System.create(registry)
-        .connect(SpeedyBee_F405_MiniFC.id, Rush_TinyTankVtx.id, (connection) =>
+    const system = System.create()
+        .connect(SpeedyBee_F405_MiniFC, Rush_TinyTankVtx, (connection) =>
             connection
                 .port("UART1_5V_OUT", "POWER_IN")
                 .port("UART1_TX", "DATA")
@@ -438,14 +430,10 @@ test("Should create a valid connection for rush vtx and fc", () => {
 });
 
 test("Should create a valid connection for elrs rx and fc", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(BetaFpv_ExpressLRS_NanoRx)
-        .registerComponent(SpeedyBee_F405_MiniFC);
-
-    const system = System.create(registry)
+    const system = System.create()
         .connect(
-            SpeedyBee_F405_MiniFC.id,
-            BetaFpv_ExpressLRS_NanoRx.id,
+            SpeedyBee_F405_MiniFC,
+            BetaFpv_ExpressLRS_NanoRx,
             (connection) =>
                 connection
                     .port("UART2_5V_OUT", "POWER_IN", { color: "red" })
@@ -463,14 +451,10 @@ test("Should create a valid connection for elrs rx and fc", () => {
 });
 
 test("Should create a valid connection for elrs rx and antenna", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(BetaFpv_ExpressLRS_NanoRx)
-        .registerComponent(BetaFpv_ExpressLRS_NanoRxAntenna);
-
-    const system = System.create(registry)
+    const system = System.create()
         .connect(
-            BetaFpv_ExpressLRS_NanoRx.id,
-            BetaFpv_ExpressLRS_NanoRxAntenna.id,
+            BetaFpv_ExpressLRS_NanoRx,
+            BetaFpv_ExpressLRS_NanoRxAntenna,
             (connection) => connection.port("RF_OUT", "RF_IN")
         )
         .build();
@@ -483,12 +467,8 @@ test("Should create a valid connection for elrs rx and antenna", () => {
 });
 
 test("Should create a valid connection for fc and camera", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(SpeedyBee_F405_MiniFC)
-        .registerComponent(Caddx_Ratel_2);
-
-    const system = System.create(registry)
-        .connect(SpeedyBee_F405_MiniFC.id, Caddx_Ratel_2.id, (connection) =>
+    const system = System.create()
+        .connect(SpeedyBee_F405_MiniFC, Caddx_Ratel_2, (connection) =>
             connection
                 .port("UART3_5V_OUT", "POWER_IN", { color: "red" })
                 .port("UART3_GND", "GND", { color: "black" })
@@ -504,14 +484,10 @@ test("Should create a valid connection for fc and camera", () => {
 });
 
 test("Should create a valid connection for esc and fc", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(SpeedyBee_F405_MiniFC)
-        .registerComponent(SpeedyBee_BLS4In1_MiniESC);
-
-    const system = System.create(registry)
+    const system = System.create()
         .connect(
-            SpeedyBee_BLS4In1_MiniESC.id,
-            SpeedyBee_F405_MiniFC.id,
+            SpeedyBee_BLS4In1_MiniESC,
+            SpeedyBee_F405_MiniFC,
             (connection) =>
                 connection.port("8_PIN_CABLE", "8_PIN_CABLE", {
                     color: "rainbow",
@@ -527,19 +503,12 @@ test("Should create a valid connection for esc and fc", () => {
 });
 
 test("Should create a valid connection for esc and motor", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(SpeedyBee_BLS4In1_MiniESC)
-        .registerComponent(TMotor_F1404_3800KV);
-
-    const system = System.create(registry)
-        .connect(
-            SpeedyBee_BLS4In1_MiniESC.id,
-            TMotor_F1404_3800KV.id,
-            (connection) =>
-                connection
-                    .port("PWM_OUT_1", "PWM_IN", { color: "black" })
-                    .port("POWER_OUT_1", "POWER_IN", { color: "black" })
-                    .port("GND_1", "GND", { color: "black" })
+    const system = System.create()
+        .connect(SpeedyBee_BLS4In1_MiniESC, TMotor_F1404_3800KV, (connection) =>
+            connection
+                .port("PWM_OUT_1", "PWM_IN", { color: "black" })
+                .port("POWER_OUT_1", "POWER_IN", { color: "black" })
+                .port("GND_1", "GND", { color: "black" })
         )
         .build();
 
@@ -551,25 +520,15 @@ test("Should create a valid connection for esc and motor", () => {
 });
 
 test("Should create a system with components and connections", () => {
-    const registry = new ComponentRegistry()
-        .registerComponent(Rush_TinyTankVtx)
-        .registerComponent(Rush_CherryAntenna)
-        .registerComponent(BetaFpv_ExpressLRS_NanoRx)
-        .registerComponent(BetaFpv_ExpressLRS_NanoRxAntenna)
-        .registerComponent(SpeedyBee_F405_MiniFC)
-        .registerComponent(SpeedyBee_BLS4In1_MiniESC)
-        .registerComponent(Caddx_Ratel_2)
-        .registerComponent(TMotor_F1404_3800KV);
-
-    const system = System.create(registry)
+    const system = System.create()
         .connect(
-            BetaFpv_ExpressLRS_NanoRx.id,
-            BetaFpv_ExpressLRS_NanoRxAntenna.id,
+            BetaFpv_ExpressLRS_NanoRx,
+            BetaFpv_ExpressLRS_NanoRxAntenna,
             (connection) => connection.port("RF_OUT", "RF_IN")
         )
         .connect(
-            SpeedyBee_F405_MiniFC.id,
-            BetaFpv_ExpressLRS_NanoRx.id,
+            SpeedyBee_F405_MiniFC,
+            BetaFpv_ExpressLRS_NanoRx,
             (connection) =>
                 connection
                     .port("UART2_5V_OUT", "POWER_IN", { color: "red" })
@@ -577,38 +536,35 @@ test("Should create a system with components and connections", () => {
                     .port("UART2_TX", "RX", { color: "blue" })
                     .port("UART2_RX", "TX", { color: "yellow" })
         )
-        .connect(Rush_TinyTankVtx.id, Rush_CherryAntenna.id, (connection) =>
+        .connect(Rush_TinyTankVtx, Rush_CherryAntenna, (connection) =>
             connection.port("RF_OUT", "RF_IN")
         )
-        .connect(SpeedyBee_F405_MiniFC.id, Rush_TinyTankVtx.id, (connection) =>
+        .connect(SpeedyBee_F405_MiniFC, Rush_TinyTankVtx, (connection) =>
             connection
                 .port("UART1_5V_OUT", "POWER_IN", { color: "red" })
                 .port("UART1_TX", "DATA", { color: "blue" })
                 .port("UART1_VTX", "VIDEO_IN", { color: "yellow" })
                 .port("UART1_GND", "GND", { color: "black" })
         )
-        .connect(SpeedyBee_F405_MiniFC.id, Caddx_Ratel_2.id, (connection) =>
+        .connect(SpeedyBee_F405_MiniFC, Caddx_Ratel_2, (connection) =>
             connection
                 .port("UART3_5V_OUT", "POWER_IN", { color: "red" })
                 .port("UART3_GND", "GND", { color: "black" })
                 .port("UART3_CAMERA_IN", "VIDEO_OUT", { color: "yellow" })
         )
         .connect(
-            SpeedyBee_BLS4In1_MiniESC.id,
-            SpeedyBee_F405_MiniFC.id,
+            SpeedyBee_BLS4In1_MiniESC,
+            SpeedyBee_F405_MiniFC,
             (connection) =>
                 connection.port("8_PIN_CABLE", "8_PIN_CABLE", {
                     color: "rainbow",
                 })
         )
-        .connect(
-            SpeedyBee_BLS4In1_MiniESC.id,
-            TMotor_F1404_3800KV.id,
-            (connection) =>
-                connection
-                    .port("PWM_OUT_1", "PWM_IN", { color: "black" })
-                    .port("POWER_OUT_1", "POWER_IN", { color: "black" })
-                    .port("GND_1", "GND", { color: "black" })
+        .connect(SpeedyBee_BLS4In1_MiniESC, TMotor_F1404_3800KV, (connection) =>
+            connection
+                .port("PWM_OUT_1", "PWM_IN", { color: "black" })
+                .port("POWER_OUT_1", "POWER_IN", { color: "black" })
+                .port("GND_1", "GND", { color: "black" })
         )
         .build();
 

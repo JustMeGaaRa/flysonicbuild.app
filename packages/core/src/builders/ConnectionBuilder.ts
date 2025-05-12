@@ -1,13 +1,13 @@
 import {
-    ComponentRegistry,
-    ConnectionRegistry,
+    ComponentService,
+    ConnectionService,
     validateConnection,
 } from "../index.ts";
 
 export class ConnectionBuilder {
     public constructor(
-        private componentRegistry: ComponentRegistry,
-        private connectionRegistry: ConnectionRegistry,
+        private componentRegistry: ComponentService,
+        private connectionRegistry: ConnectionService,
         private sourceId: string,
         private targetId: string
     ) {}

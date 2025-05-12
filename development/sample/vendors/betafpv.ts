@@ -1,4 +1,5 @@
 import { Component } from "@flysonic/core/Component.ts";
+import { ComponentRegistry } from "@flysonic/core/ComponentRegistry.ts";
 
 const ExpressLRS_NanoRx = (): Component => ({
     id: `betafpv-antenna-${crypto.randomUUID()}`,
@@ -55,6 +56,26 @@ const ExpressLRS_NanoRx = (): Component => ({
 const BetaFpv_ExpressLRS_NanoRx_2_4GHz = ExpressLRS_NanoRx;
 const BetaFpv_ExpressLRS_NanoRx_915MHz = ExpressLRS_NanoRx;
 const BetaFpv_ExpressLRS_NanoRx_868MHz = ExpressLRS_NanoRx;
+
+(function registerComponents() {
+    const receiver = { type: "Receiver", vendor: "BetaFPV" };
+    ComponentRegistry.getInstance()
+        .register({
+            ...receiver,
+            name: "BetaFPV ELRS Nano RX 2.4GHz",
+            create: BetaFpv_ExpressLRS_NanoRx_2_4GHz,
+        })
+        .register({
+            ...receiver,
+            name: "BetaFPV ELRS Nano RX 915MHz",
+            create: BetaFpv_ExpressLRS_NanoRx_915MHz,
+        })
+        .register({
+            ...receiver,
+            name: "BetaFPV ELRS Nano RX 868MHz",
+            create: BetaFpv_ExpressLRS_NanoRx_868MHz,
+        });
+})();
 
 export default {
     BetaFpv_ExpressLRS_NanoRx_2_4GHz,

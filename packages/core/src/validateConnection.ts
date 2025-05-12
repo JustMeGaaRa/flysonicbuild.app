@@ -87,7 +87,7 @@ export function validateConnection(
             if (!targetProtocol) {
                 // ERROR: no matching protocols found in target port for target component
                 errors.push(
-                    ErrorBuilder.build(ErrorCode.PROTOCOL_NOT_FOUND, {
+                    ErrorBuilder.build(ErrorCode.PROTOCOL_NOT_SUPPORTED, {
                         sourceComponentId: sourceComponent.id,
                         sourcePortName: sourcePortName,
                         targetComponentId: targetComponent.id,

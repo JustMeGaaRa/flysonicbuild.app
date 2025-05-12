@@ -1,7 +1,7 @@
 import { Connection } from "./Connection.ts";
 
-export class ConnectionRegistry {
-    private connections: Connection[] = [];
+export class ConnectionService {
+    private readonly connections: Connection[] = [];
 
     registerConnection(connection: Connection): this {
         this.connections.push(connection);
