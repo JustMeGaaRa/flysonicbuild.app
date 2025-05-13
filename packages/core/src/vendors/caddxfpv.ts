@@ -1,8 +1,9 @@
-import { ComponentBuilder, ComponentRegistry } from "@flysonic/core/index.ts";
+import { ComponentBuilder, ComponentRegistry } from "../index.ts";
 
 const CaddxFpv_Ratel2 = () =>
     new ComponentBuilder()
         .withName("Caddx Ratel 2")
+        .withMetadata({ type: "Camera", vendor: "Caddx" })
         .withPort((port) => {
             port.withName("POWER")
                 .withDirection("input")
@@ -26,6 +27,7 @@ const CaddxFpv_Ratel2 = () =>
 const CaddxFpv_RatelPro = () =>
     new ComponentBuilder()
         .withName("Caddx Ratel Pro")
+        .withMetadata({ type: "Camera", vendor: "Caddx" })
         .withPort((port) => {
             port.withName("POWER")
                 .withDirection("input")
@@ -49,6 +51,7 @@ const CaddxFpv_RatelPro = () =>
 const CaddxFpv_BabyRatel2 = () =>
     new ComponentBuilder()
         .withName("Caddx Baby Ratel 2")
+        .withMetadata({ type: "Camera", vendor: "Caddx" })
         .withPort((port) => {
             port.withName("POWER")
                 .withDirection("input")
@@ -70,7 +73,7 @@ const CaddxFpv_BabyRatel2 = () =>
         .build();
 
 (function registerComponents() {
-    const camera = { type: "camera", vendor: "Caddx" };
+    const camera = { type: "Camera", vendor: "Caddx" };
     ComponentRegistry.getInstance()
         .register({
             ...camera,

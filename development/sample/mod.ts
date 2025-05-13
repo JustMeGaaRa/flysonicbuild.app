@@ -1,12 +1,12 @@
 import { System } from "@flysonic/core/builders/SystemBuilder.ts";
-import BetaFPV from "./vendors/betafpv.ts";
-import CaddxFPV from "./vendors/caddxfpv.ts";
-import RushFPV from "./vendors/rushfpv.ts";
-import SpeedyBee from "./vendors/speedybee.ts";
-import TMotorHobby from "./vendors/tmotorhobby.ts";
-import RadioMaster from "./vendors/radiomaster.ts";
-import walksnail from "./vendors/walksnail.ts";
-import Tattu from "./vendors/tattu.ts";
+import BetaFPV from "@flysonic/core/vendors/betafpv.ts";
+import CaddxFPV from "@flysonic/core/vendors/caddxfpv.ts";
+import RadioMaster from "@flysonic/core/vendors/radiomaster.ts";
+import RushFPV from "@flysonic/core/vendors/rushfpv.ts";
+import SpeedyBee from "@flysonic/core/vendors/speedybee.ts";
+import Tattu from "@flysonic/core/vendors/tattu.ts";
+import TMotorHobby from "@flysonic/core/vendors/tmotorhobby.ts";
+import walksnail from "@flysonic/core/vendors/walksnail.ts";
 
 export default function main() {
     const vtx = RushFPV.RushFPV_VTX_TinyTank_CH48();

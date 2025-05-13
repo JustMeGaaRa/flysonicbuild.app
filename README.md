@@ -43,7 +43,7 @@ The app is reading the json metadata and renders it as a set of nodes and connec
 -   [x] Custom edge with colors
 -   [x] Real-time updates from from the script
 -   [ ] Manually connect components
--   [ ] Manually add component type placeholder
+-   [x] Manually add component type placeholder
 -   [ ] Select component inside node header
 -   [x] Auto layout for the graph
 

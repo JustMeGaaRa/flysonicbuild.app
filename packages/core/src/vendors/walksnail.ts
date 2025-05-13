@@ -1,5 +1,4 @@
-import { Component } from "@flysonic/core/Component.ts";
-import { ComponentRegistry } from "@flysonic/core/ComponentRegistry.ts";
+import { Component, ComponentRegistry } from "../index.ts";
 
 const Walksnail_Avatar = (): Component => ({
     id: `walksnail-avatarhd-${crypto.randomUUID()}`,

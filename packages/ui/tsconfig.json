@@ -1,5 +1,8 @@
 {
-    "extends": "@flysonic/typescript-config/base.json",
+    "extends": "@flysonic/typescript-config/react-library.json",
+    "compilerOptions": {
+        "outDir": "dist"
+    },
     "include": ["."],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "dist"]
 }

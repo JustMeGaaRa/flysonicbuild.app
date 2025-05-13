@@ -21,6 +21,11 @@ export class ComponentBuilder {
         return this;
     }
 
+    withMetadata(metadata: Record<string, string | number | boolean>) {
+        this.component.metadata = metadata;
+        return this;
+    }
+
     withPort(configure: (port: PortBuilder) => void) {
         const portBuilder = new PortBuilder();
         configure(portBuilder);

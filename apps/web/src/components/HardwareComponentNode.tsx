@@ -1,5 +1,5 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { Component } from "@flysonic/core";
+import { Box, Flex, Stack, Text } from "@chakra-ui/react";
+import { Component, getUniquePortId, Port } from "@flysonic/core";
 import { Handle, Node, NodeProps, Position } from "@xyflow/react";
 import { FC } from "react";
 import { HardwareLabel } from "./HardwarePortLabel";
@@ -10,17 +10,23 @@ const diamondPolygon = "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)";
 
 export type ComponentNode = Node<Component, "component">;
 
-function getPortColor(port: string) {
-    switch (port) {
-        // case "input":
-        //     return "var(--chakra-colors-green-emphasized)";
-        // case "output":
-        //     return "var(--chakra-colors-red-emphasized)";
-        // case "bidirectional":
-        //     return "var(--chakra-colors-cyan-emphasized)";
+function getPortColor(port: Port) {
+    switch (port.direction) {
         default:
             return "var(--chakra-colors-gray-focus-ring)";
     }
+}
+
+function getPortShape(port: Port, position: Position) {
+    return port.direction === "bidirectional"
+        ? diamondPolygon
+        : position === Position.Left
+          ? port.direction === "input"
+              ? rightPointingTriangle
+              : leftPointingTriangle
+          : port.direction === "input"
+            ? leftPointingTriangle
+            : rightPointingTriangle;
 }
 
 export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
@@ -34,22 +40,17 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
             borderRadius={"md"}
             width={"200px"}
         >
-            <Box
+            <Stack
+                padding={2}
+                gap={1}
                 backgroundColor={"purple.muted"}
                 borderTopRadius={"md"}
-                px={3}
-                py={1}
             >
-                <Text
-                    color={"white"}
-                    fontWeight={"bold"}
-                    fontSize={"sm"}
-                    title={data.name}
-                    truncate
-                >
-                    {data.name}
+                <Text lineClamp={1}>{data.name}</Text>
+                <Text fontSize={"xs"} color={"fg.muted"}>
+                    {data.metadata?.type ?? "Component"}
                 </Text>
-            </Box>
+            </Stack>
 
             <Flex direction={"column"} width={"100%"}>
                 {data.ports.map((port, index) => (
@@ -60,51 +61,61 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
                     >
                         <Box position={"absolute"} width={"100%"}>
                             <Handle
-                                key={`${data.id}-${port.name}-input`}
-                                type={
-                                    port.direction === "input"
-                                        ? "target"
-                                        : "source"
-                                }
+                                key={`${getUniquePortId(data.id, port.name)}-left-target`}
+                                type={"target"}
                                 position={Position.Left}
-                                id={`${data.id}-${port.name}`}
+                                id={getUniquePortId(data.id, port.name)}
                                 style={{
-                                    backgroundColor: getPortColor(
-                                        port.direction
-                                    ),
+                                    backgroundColor: getPortColor(port),
                                     width: 10,
                                     height: 10,
                                     borderRadius: 0,
-                                    clipPath:
-                                        port.direction === "bidirectional"
-                                            ? diamondPolygon
-                                            : port.direction === "input"
-                                              ? rightPointingTriangle
-                                              : leftPointingTriangle,
+                                    clipPath: getPortShape(port, Position.Left),
                                 }}
                             />
                             <Handle
-                                key={`${data.id}-${port.name}-output`}
-                                type={
-                                    port.direction === "input"
-                                        ? "target"
-                                        : "source"
-                                }
-                                position={Position.Right}
-                                id={`${data.id}-${port.name}`}
+                                key={`${getUniquePortId(data.id, port.name)}-left-source`}
+                                type={"source"}
+                                position={Position.Left}
+                                id={getUniquePortId(data.id, port.name)}
                                 style={{
-                                    backgroundColor: getPortColor(
-                                        port.direction
-                                    ),
+                                    backgroundColor: getPortColor(port),
                                     width: 10,
                                     height: 10,
                                     borderRadius: 0,
-                                    clipPath:
-                                        port.direction === "bidirectional"
-                                            ? diamondPolygon
-                                            : port.direction === "input"
-                                              ? leftPointingTriangle
-                                              : rightPointingTriangle,
+                                    clipPath: getPortShape(port, Position.Left),
+                                }}
+                            />
+                            <Handle
+                                key={`${getUniquePortId(data.id, port.name)}-right-target`}
+                                type={"target"}
+                                position={Position.Right}
+                                id={getUniquePortId(data.id, port.name)}
+                                style={{
+                                    backgroundColor: getPortColor(port),
+                                    width: 10,
+                                    height: 10,
+                                    borderRadius: 0,
+                                    clipPath: getPortShape(
+                                        port,
+                                        Position.Right
+                                    ),
+                                }}
+                            />
+                            <Handle
+                                key={`${getUniquePortId(data.id, port.name)}-right-source`}
+                                type={"source"}
+                                position={Position.Right}
+                                id={getUniquePortId(data.id, port.name)}
+                                style={{
+                                    backgroundColor: getPortColor(port),
+                                    width: 10,
+                                    height: 10,
+                                    borderRadius: 0,
+                                    clipPath: getPortShape(
+                                        port,
+                                        Position.Right
+                                    ),
                                 }}
                             />
                         </Box>

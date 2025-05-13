@@ -28,7 +28,7 @@ export const HardwareConnectionEdge: FC<EdgeProps<ConnectionEdge>> = ({
 
     const hasErrors = data?.errors?.length && data?.errors?.length > 0;
 
-    if (!sourceNode || !targetNode) {
+    if (!sourceNode || !targetNode || !sourceHandleId || !targetHandleId) {
         return null;
     }
 
@@ -39,7 +39,7 @@ export const HardwareConnectionEdge: FC<EdgeProps<ConnectionEdge>> = ({
         targetY,
         sourcePosition,
         targetPosition,
-    } = getEdgeParams(sourceNode, targetNode, sourceHandleId!, targetHandleId!);
+    } = getEdgeParams(sourceNode, targetNode, sourceHandleId, targetHandleId);
 
     const [edgePath, labelX, labelY] = getBezierPath({
         sourceX,

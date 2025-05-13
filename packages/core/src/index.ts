@@ -1,3 +1,4 @@
+export * from "./builders/index.ts";
 export * from "./Component.ts";
 export * from "./ComponentRegistry.ts";
 export * from "./ComponentService.ts";
@@ -5,6 +6,6 @@ export * from "./Connection.ts";
 export * from "./ConnectionService.ts";
 export * from "./Port.ts";
 export * from "./Protocol.ts";
-export * from "./validateConnection.ts";
-export * from "./builders/index.ts";
 export * from "./utils/index.ts";
+export * from "./validateConnection.ts";
+export * from "./vendors/index.ts";

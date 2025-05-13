@@ -4,9 +4,10 @@ import {
     HardwareComponentNode,
     HardwareConnectionEdge,
 } from "@/components";
-import { Toaster, toaster } from "@/components/ui/toaster";
-import { useAutoLayout, useWebsocket } from "@/hooks";
+import { ComponentsSidebar } from "@/components/ComponentsSidebar";
+import { Toaster } from "@/components/ui/toaster";
 import { Box } from "@chakra-ui/react";
+import { ComponentRegistry, toReactFlowNode } from "@flysonic/core";
 import {
     addEdge,
     Background,
@@ -15,6 +16,7 @@ import {
     ReactFlow,
     useEdgesState,
     useNodesState,
+    useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { FC, useCallback } from "react";
@@ -26,11 +28,10 @@ const EdgeTypes = {
     connection: HardwareConnectionEdge,
 };
 
-const ConnectionStatusToastId = "connection-status";
-
 export const FlowBuilderPage: FC = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState<ComponentNode>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState<ConnectionEdge>([]);
+    const { screenToFlowPosition } = useReactFlow();
 
     const onConnect = useCallback(
         (params: Connection) => {
@@ -39,45 +40,37 @@ export const FlowBuilderPage: FC = () => {
         [setEdges]
     );
 
-    const onWebsocketConnected = useCallback(() => {
-        toaster.update(ConnectionStatusToastId, {
-            title: "Connection Established",
-            description: "Server connection established successfully.",
-            type: "success",
-            duration: 3000,
-            closable: true,
-        });
+    const onDragOver = useCallback((event: React.DragEvent) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
     }, []);
 
-    const onWebsocketMessage = useCallback(
-        (event: MessageEvent) => {
-            if (event.data) {
-                const { nodes, edges } = JSON.parse(event.data);
-                setNodes(nodes);
-                setEdges(edges);
+    const onDrop = useCallback(
+        (event: React.DragEvent) => {
+            event.preventDefault();
+
+            const componentName = event.dataTransfer.getData("text/plain");
+            const position = screenToFlowPosition({
+                x: event.clientX,
+                y: event.clientY,
+            });
+            const component = ComponentRegistry.getInstance()
+                .getComponent(componentName)
+                ?.create();
+
+            if (component) {
+                const node = toReactFlowNode(component) as ComponentNode;
+                setNodes((nodes) => [
+                    ...nodes,
+                    {
+                        ...node,
+                        position,
+                    },
+                ]);
             }
         },
-        [setNodes, setEdges]
+        [screenToFlowPosition, setNodes]
     );
-
-    const onWebsocketDisconnect = useCallback(() => {
-        toaster.create({
-            title: "Connection Error",
-            description: "Server connection lost. Retrying connection...",
-            type: "loading",
-            id: ConnectionStatusToastId,
-            closable: false,
-        });
-    }, []);
-
-    // TODO: move this connection url to env variables
-    const url = "ws://localhost:7000";
-    useWebsocket(url, {
-        onConnected: onWebsocketConnected,
-        onMessage: onWebsocketMessage,
-        onDisconnect: onWebsocketDisconnect,
-    });
-    useAutoLayout();
 
     return (
         <Box height={"100vh"} width={"100vw"}>
@@ -89,15 +82,17 @@ export const FlowBuilderPage: FC = () => {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
                 nodeTypes={NodeTypes}
                 edgeTypes={EdgeTypes}
-                snapGrid={[20, 20]}
-                snapToGrid
+                style={{ pointerEvents: "auto" }}
                 fitView
             >
                 <Background bgColor={"var(--chakra-colors-gray-subtle)"} />
-                <Controls position={"bottom-left"} />
+                <Controls position={"bottom-right"} />
             </ReactFlow>
+            <ComponentsSidebar />
         </Box>
     );
 };

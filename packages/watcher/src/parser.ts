@@ -1,7 +1,7 @@
 import { Component } from "@flysonic/core/Component.ts";
 import { Connection } from "@flysonic/core/Connection.ts";
+import { toReactFlow } from "@flysonic/core/utils/reactflow.ts";
 import { ReactFlowData, ReactFlowSchema } from "@flysonic/schema/schema.ts";
-import { toReactFlow } from "./utils/reactflow.ts";
 
 export async function validateAndParse(
     fileUrl: string

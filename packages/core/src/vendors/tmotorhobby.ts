@@ -1,8 +1,9 @@
-import { ComponentBuilder, ComponentRegistry } from "@flysonic/core/index.ts";
+import { ComponentBuilder, ComponentRegistry } from "../index.ts";
 
 const TMotorHobby_F1404_2900KV = () =>
     new ComponentBuilder()
         .withName("T-Motor F1404 2900KV")
+        .withMetadata({ type: "Motor", vendor: "T-Motor Hobby" })
         .withPort((port) => {
             port.withName("PWM")
                 .withDirection("input")
@@ -13,6 +14,7 @@ const TMotorHobby_F1404_2900KV = () =>
 const TMotorHobby_F1404_3800KV = () =>
     new ComponentBuilder()
         .withName("T-Motor F1404 3800KV")
+        .withMetadata({ type: "Motor", vendor: "T-Motor Hobby" })
         .withPort((port) => {
             port.withName("PWM")
                 .withDirection("input")
@@ -23,6 +25,7 @@ const TMotorHobby_F1404_3800KV = () =>
 const TMotorHobby_F1303_4900KV = () =>
     new ComponentBuilder()
         .withName("T-Motor F1303 4900KV")
+        .withMetadata({ type: "Motor", vendor: "T-Motor Hobby" })
         .withPort((port) => {
             port.withName("PWM")
                 .withDirection("input")
@@ -33,6 +36,7 @@ const TMotorHobby_F1303_4900KV = () =>
 const TMotorHobby_F1303_5000KV = () =>
     new ComponentBuilder()
         .withName("T-Motor F1303 5000KV")
+        .withMetadata({ type: "Motor", vendor: "T-Motor Hobby" })
         .withPort((port) => {
             port.withName("PWM")
                 .withDirection("input")
@@ -43,6 +47,7 @@ const TMotorHobby_F1303_5000KV = () =>
 const TMotorHobby_Velox_F2206_1750KV = () =>
     new ComponentBuilder()
         .withName("T-Motor Velox F2206 1750KV")
+        .withMetadata({ type: "Motor", vendor: "T-Motor Hobby" })
         .withPort((port) => {
             port.withName("PWM")
                 .withDirection("input")
@@ -52,31 +57,31 @@ const TMotorHobby_Velox_F2206_1750KV = () =>
         .build();
 
 (function registerComponents() {
-    const motor = { type: "Motor", vendor: "TMotorHobby" };
+    const motor = { type: "Motor", vendor: "T-Motor Hobby" };
     ComponentRegistry.getInstance()
         .register({
             ...motor,
-            name: "TMotor F1404 2900KV",
+            name: "T-Motor F1404 2900KV",
             create: TMotorHobby_F1404_2900KV,
         })
         .register({
             ...motor,
-            name: "TMotor F1404 3800KV",
+            name: "T-Motor F1404 3800KV",
             create: TMotorHobby_F1404_3800KV,
         })
         .register({
             ...motor,
-            name: "TMotor F1303 4900KV",
+            name: "T-Motor F1303 4900KV",
             create: TMotorHobby_F1303_4900KV,
         })
         .register({
             ...motor,
-            name: "TMotor F1303 5000KV",
+            name: "T-Motor F1303 5000KV",
             create: TMotorHobby_F1303_5000KV,
         })
         .register({
             ...motor,
-            name: "TMotor Velox F2206 1750KV",
+            name: "T-Motor Velox F2206 1750KV",
             create: TMotorHobby_Velox_F2206_1750KV,
         });
 })();

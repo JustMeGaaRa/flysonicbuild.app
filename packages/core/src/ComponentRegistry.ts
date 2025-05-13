@@ -1,6 +1,6 @@
 import { Component } from "./Component.ts";
 
-type ComponentMetadata = {
+export type ComponentMetadata = {
     name: string;
     vendor: string;
     type: string;
@@ -34,6 +34,10 @@ export class ComponentRegistry {
             ...(this.componentsByType.get(componentMetadata.type) || []),
         ]);
         return this;
+    }
+
+    getComponent(name: string): ComponentMetadata | undefined {
+        return this.components.get(name);
     }
 
     getComponents(): ComponentMetadata[] {

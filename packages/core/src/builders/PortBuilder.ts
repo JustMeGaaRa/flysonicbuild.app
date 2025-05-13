@@ -17,6 +17,11 @@ export class PortBuilder {
         return this;
     }
 
+    withDescription(description: string) {
+        this.port.description = description;
+        return this;
+    }
+
     withDirection(direction: PortDirection) {
         this.port.direction = direction;
         return this;

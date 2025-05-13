@@ -1,9 +1,9 @@
-import { Component } from "@flysonic/core/Component.ts";
-import { Connection } from "@flysonic/core/Connection.ts";
 import {
+    Component,
+    Connection,
     getUniqueConnectionId,
     getUniquePortId,
-} from "@flysonic/core/utils/index.ts";
+} from "../index.ts";
 
 type Node<NodeData extends Record<string, unknown>> = {
     id: string;
@@ -51,7 +51,7 @@ export function toReactFlowEdge(connection: Connection) {
             connection.target.componentId,
             connection.target.portName
         ),
-        animated: true,
+        animated: false,
         data: connection,
         label: connection.description,
     } as Edge<Connection>;

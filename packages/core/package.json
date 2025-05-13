@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "description": "A core package with base abstractions.",
     "keywords": [
+        "flysonic",
         "core"
     ],
     "license": "MIT",

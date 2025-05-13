@@ -1,19 +1,22 @@
 {
     "name": "@flysonic/ui",
-    "version": "0.0.0",
+    "version": "0.1.0",
+    "keywords": [
+        "flysonic",
+        "ui"
+    ],
     "exports": {
-        "./counter": "./components/counter.ts",
-        "./header": "./components/header.ts",
-        "./setup-counter": "./utils/counter.ts"
+        ".": "./src/index.ts"
     },
     "license": "MIT",
+    "author": "Pavlo Hodysh",
+    "type": "module",
     "scripts": {
+        "test": "test",
         "lint": "eslint \"**/*.ts\""
     },
     "devDependencies": {
         "@flysonic/eslint-config": "workspace:*",
-        "@flysonic/typescript-config": "workspace:*",
-        "eslint": "^8.57.0",
-        "typescript": "5.5.4"
+        "@flysonic/typescript-config": "workspace:*"
     }
 }
