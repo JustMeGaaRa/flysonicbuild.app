@@ -42,7 +42,7 @@ export const ComponentsSidebar: FC = () => {
                 <ButtonGroup position={"absolute"} top={4} left={4} size={"sm"}>
                     <IconButton
                         aria-label={"Open Sidebar"}
-                        rounded={"md"}
+                        rounded={"lg"}
                         title={"Open Sidebar"}
                     >
                         <IconlySidebarOpen />

@@ -5,9 +5,9 @@ export const HardwareLabel: FC<PropsWithChildren> = ({ children }) => {
     return (
         <Box
             backgroundColor={"bg.muted"}
-            borderRadius={"sm"}
-            padding={2}
             margin={2}
+            padding={2}
+            rounded={"lg"}
             width={"100%"}
         >
             <Text fontSize={"xs"} color={"white"}>

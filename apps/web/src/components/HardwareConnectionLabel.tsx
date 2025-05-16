@@ -13,14 +13,14 @@ export const HardwareConnectionLabel: FC<
             borderColor={
                 status === "incompatible" ? "border.error" : "border.success"
             }
-            borderWidth={2}
-            borderRadius={"sm"}
+            borderWidth={1}
             position={"absolute"}
             padding={2}
+            rounded={"full"}
             transform={`translate(-50%, -50%) translate(${labelPosition.x}px, ${labelPosition.y}px)`}
         >
             <Text
-                fontSize={"xs"}
+                fontSize={"x-small"}
                 color={status === "incompatible" ? "fg.error" : "fg.success"}
             >
                 {children}

@@ -62,22 +62,16 @@ const SpeedyBee_FC_F405Mini = () =>
                 .withProtocol("power", { voltage: 5 });
         })
         .withPort((port) => {
-            port.withName("UART3_5V")
-                .withDirection("output")
-                .withKind("physical")
-                .withProtocol("power", { voltage: 5 });
-        })
-        .withPort((port) => {
-            port.withName("UART2_GND")
-                .withDirection("bidirectional")
-                .withKind("physical")
-                .withProtocol("ground");
-        })
-        .withPort((port) => {
             port.withName("UART3_CAMERA")
                 .withDirection("input")
                 .withKind("physical")
-                .withProtocol("CVBS");
+                .withProtocol("CVBS", { format: "NTSC" });
+        })
+        .withPort((port) => {
+            port.withName("UART3_GND")
+                .withDirection("bidirectional")
+                .withKind("physical")
+                .withProtocol("ground");
         })
         .withPort((port) => {
             port.withName("8_PIN_CABLE")

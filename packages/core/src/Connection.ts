@@ -9,5 +9,5 @@ export interface Connection extends Record<string, unknown> {
 }
 
 export function getUniqueConnectionId(connection: Connection) {
-    return `${connection.source.componentId}:${connection.source.portName}->${connection.target.componentId}:${connection.target.portName}`;
+    return `${connection.source.componentId}:${connection.source.portName}->${connection.target.componentId}:${connection.target.portName}-${crypto.randomUUID()}`;
 }

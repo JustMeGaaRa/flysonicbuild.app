@@ -5,21 +5,29 @@ import {
     HardwareConnectionEdge,
 } from "@/components";
 import { ComponentsSidebar } from "@/components/ComponentsSidebar";
+import { HardwareConnectionLine } from "@/components/HardwareConnectionLine";
 import { Toaster } from "@/components/ui/toaster";
 import { Box } from "@chakra-ui/react";
-import { ComponentRegistry, toReactFlowNode } from "@flysonic/core";
 import {
-    addEdge,
+    ComponentRegistry,
+    getUniquePortId,
+    toReactFlowEdge,
+    toReactFlowNode,
+    validateConnection,
+} from "@flysonic/core";
+import {
     Background,
     Connection,
+    ConnectionMode,
     Controls,
     ReactFlow,
     useEdgesState,
     useNodesState,
     useReactFlow,
+    useUpdateNodeInternals,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { FC, useCallback } from "react";
+import { CSSProperties, FC, useCallback } from "react";
 
 const NodeTypes = {
     component: HardwareComponentNode,
@@ -28,16 +36,58 @@ const EdgeTypes = {
     connection: HardwareConnectionEdge,
 };
 
+const defaultStyle = { pointerEvents: "auto" } as CSSProperties;
+const defaultViewport = { zoom: 1, x: 0, y: 0 };
+const proOptions = { hideAttribution: true };
+
+function findPortByHandle(component: ComponentNode, handleId: string) {
+    return component.data.ports.find(
+        (x) => getUniquePortId(component.id, x.name) === handleId
+    );
+}
+
 export const FlowBuilderPage: FC = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState<ComponentNode>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState<ConnectionEdge>([]);
-    const { screenToFlowPosition } = useReactFlow();
+    const { screenToFlowPosition, getNode } = useReactFlow<
+        ComponentNode,
+        ConnectionEdge
+    >();
+    const updateNodeInternals = useUpdateNodeInternals();
 
     const onConnect = useCallback(
         (params: Connection) => {
-            setEdges((state) => addEdge(params, state));
+            const sourceComponent = getNode(params.source);
+            const targetComponent = getNode(params.target);
+
+            if (
+                sourceComponent &&
+                targetComponent &&
+                params.sourceHandle &&
+                params.targetHandle
+            ) {
+                const sourcePort = findPortByHandle(
+                    sourceComponent,
+                    params.sourceHandle
+                );
+                const targetPort = findPortByHandle(
+                    targetComponent,
+                    params.targetHandle
+                );
+
+                if (sourcePort && targetPort) {
+                    const connection = validateConnection(
+                        sourceComponent.data,
+                        targetComponent.data,
+                        sourcePort.name,
+                        targetPort.name
+                    );
+                    const edge = toReactFlowEdge(connection) as ConnectionEdge;
+                    setEdges((state) => [...state, edge]);
+                }
+            }
         },
-        [setEdges]
+        [getNode, setEdges]
     );
 
     const onDragOver = useCallback((event: React.DragEvent) => {
@@ -60,16 +110,12 @@ export const FlowBuilderPage: FC = () => {
 
             if (component) {
                 const node = toReactFlowNode(component) as ComponentNode;
-                setNodes((nodes) => [
-                    ...nodes,
-                    {
-                        ...node,
-                        position,
-                    },
-                ]);
+                const nodePositioned = { ...node, position };
+                setNodes((nodes) => [...nodes, nodePositioned]);
+                updateNodeInternals(node.id);
             }
         },
-        [screenToFlowPosition, setNodes]
+        [screenToFlowPosition, setNodes, updateNodeInternals]
     );
 
     return (
@@ -79,17 +125,22 @@ export const FlowBuilderPage: FC = () => {
                 colorMode={"system"}
                 nodes={nodes}
                 edges={edges}
+                nodeTypes={NodeTypes}
+                edgeTypes={EdgeTypes}
+                connectionMode={ConnectionMode.Loose}
+                connectionLineComponent={HardwareConnectionLine}
+                nodeDragThreshold={5}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
+                defaultViewport={defaultViewport}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
-                nodeTypes={NodeTypes}
-                edgeTypes={EdgeTypes}
-                style={{ pointerEvents: "auto" }}
+                proOptions={proOptions}
+                style={defaultStyle}
                 fitView
             >
-                <Background bgColor={"var(--chakra-colors-gray-subtle)"} />
+                <Background bgColor={"var(--chakra-colors-bg-muted)"} />
                 <Controls position={"bottom-right"} />
             </ReactFlow>
             <ComponentsSidebar />

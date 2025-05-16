@@ -31,20 +31,23 @@ function getPortShape(port: Port, position: Position) {
 
 export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
     data,
+    selected,
 }) => {
     return (
-        <Box
-            backgroundColor={"bg.emphasized"}
+        <Stack
+            backgroundColor={selected ? "bg.emphasized" : "bg"}
             borderWidth={1}
-            borderColor={"border.emphasized"}
-            borderRadius={"md"}
+            borderColor={selected ? "border.emphasized" : "border"}
+            rounded={"xl"}
             width={"200px"}
         >
             <Stack
                 padding={2}
                 gap={1}
-                backgroundColor={"purple.muted"}
-                borderTopRadius={"md"}
+                backgroundColor={
+                    selected ? "purple.emphasized" : "purple.muted"
+                }
+                borderTopRadius={"lg"}
             >
                 <Text lineClamp={1}>{data.name}</Text>
                 <Text fontSize={"xs"} color={"fg.muted"}>
@@ -52,7 +55,7 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
                 </Text>
             </Stack>
 
-            <Flex direction={"column"} width={"100%"}>
+            <Stack gap={0}>
                 {data.ports.map((port, index) => (
                     <Flex
                         key={index}
@@ -60,19 +63,6 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
                         position={"relative"}
                     >
                         <Box position={"absolute"} width={"100%"}>
-                            <Handle
-                                key={`${getUniquePortId(data.id, port.name)}-left-target`}
-                                type={"target"}
-                                position={Position.Left}
-                                id={getUniquePortId(data.id, port.name)}
-                                style={{
-                                    backgroundColor: getPortColor(port),
-                                    width: 10,
-                                    height: 10,
-                                    borderRadius: 0,
-                                    clipPath: getPortShape(port, Position.Left),
-                                }}
-                            />
                             <Handle
                                 key={`${getUniquePortId(data.id, port.name)}-left-source`}
                                 type={"source"}
@@ -84,22 +74,6 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
                                     height: 10,
                                     borderRadius: 0,
                                     clipPath: getPortShape(port, Position.Left),
-                                }}
-                            />
-                            <Handle
-                                key={`${getUniquePortId(data.id, port.name)}-right-target`}
-                                type={"target"}
-                                position={Position.Right}
-                                id={getUniquePortId(data.id, port.name)}
-                                style={{
-                                    backgroundColor: getPortColor(port),
-                                    width: 10,
-                                    height: 10,
-                                    borderRadius: 0,
-                                    clipPath: getPortShape(
-                                        port,
-                                        Position.Right
-                                    ),
                                 }}
                             />
                             <Handle
@@ -122,7 +96,7 @@ export const HardwareComponentNode: FC<NodeProps<ComponentNode>> = ({
                         <HardwareLabel>{port.name}</HardwareLabel>
                     </Flex>
                 ))}
-            </Flex>
-        </Box>
+            </Stack>
+        </Stack>
     );
 };
