@@ -5,36 +5,41 @@ type IconlyIconProps = {
     color?: string;
 };
 
-export const IconlyUser: FC<IconlyIconProps> = ({
+export const IconlyDelete: FC<IconlyIconProps> = ({
     size = 24,
-    color = "#000000",
+    color = "currentColor",
 }: IconlyIconProps) => {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 25 24"
+            viewBox="0 0 25 25"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
-                d="M7.93255 3H16.3673C19.3154 3 21.1504 5.08119 21.1504 8.02638V15.9736C21.1504 18.9188 19.3154 21 16.3663 21H7.93255C4.98444 21 3.15039 18.9188 3.15039 15.9736V8.02638C3.15039 5.08119 4.9932 3 7.93255 3Z"
+                d="M19.6666 10.3745L19.0547 18.7511C18.9282 20.4839 17.4854 21.8265 15.7468 21.8265H9.75378C8.01619 21.8265 6.57241 20.4839 6.44594 18.7502L5.83398 10.3745"
                 stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             ></path>
             <path
-                d="M6.98926 20.9202V20.0153C6.98926 18.3321 8.32223 16.2305 12.146 16.2305C15.9795 16.2305 17.3125 18.3126 17.3125 19.9959V20.9202"
+                d="M21.0149 7.22998H4.48535"
                 stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             ></path>
             <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M15.4454 10.5259C15.4454 12.3464 13.9704 13.8214 12.1499 13.8214C10.3295 13.8214 8.85352 12.3464 8.85352 10.5259C8.85352 8.7055 10.3295 7.23047 12.1499 7.23047C13.9704 7.23047 15.4454 8.7055 15.4454 10.5259Z"
+                d="M16.5214 7.22889L16.0184 4.75287C15.8725 4.20707 15.3773 3.82764 14.813 3.82764H10.6918C10.1246 3.8257 9.62745 4.20513 9.48054 4.75287L8.98242 7.22889"
+                stroke={color}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+            <path
+                d="M10.8516 12.6089V17.1173M14.232 12.6089V17.1173"
                 stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"

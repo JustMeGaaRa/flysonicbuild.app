@@ -1,6 +1,7 @@
 import { IconlyCpuProcessor, IconlySidebarOpen, IconlyUser } from "@/icons";
 import {
     Accordion,
+    Box,
     ButtonGroup,
     CloseButton,
     Drawer,
@@ -36,22 +37,49 @@ export const ComponentsSidebar: FC = () => {
         <Drawer.Root
             defaultOpen
             closeOnInteractOutside={false}
-            placement={"start"}
+            placement={"end"}
+            modal={false}
         >
-            <Drawer.Trigger asChild>
-                <ButtonGroup position={"absolute"} top={4} left={4} size={"sm"}>
+            <Box
+                position={"absolute"}
+                top={6}
+                right={6}
+                backgroundColor={{ base: "white", _dark: "gray.900" }}
+                borderColor={{ base: "gray.200", _dark: "gray.800" }}
+                borderWidth="1px"
+                borderRadius="xl"
+                shadow="lg"
+                transition="all 0.2s"
+                _hover={{
+                    shadow: "xl",
+                    borderColor: { base: "gray.300", _dark: "gray.700" },
+                }}
+                padding={1}
+                zIndex={10}
+            >
+                <Drawer.Trigger asChild>
                     <IconButton
                         aria-label={"Open Sidebar"}
                         rounded={"lg"}
                         title={"Open Sidebar"}
+                        variant="ghost"
+                        color={{ _dark: "gray.400" }}
+                        _hover={{ bg: "bg.subtle", color: "fg" }}
                     >
                         <IconlySidebarOpen />
                     </IconButton>
-                </ButtonGroup>
-            </Drawer.Trigger>
+                </Drawer.Trigger>
+            </Box>
             <Portal>
                 <Drawer.Positioner padding={4} pointerEvents={"none"}>
-                    <Drawer.Content rounded={"md"} pointerEvents={"auto"}>
+                    <Drawer.Content
+                        pointerEvents={"auto"}
+                        bg={{ base: "bg.panel", _dark: "gray.900" }}
+                        borderColor={{ base: "border", _dark: "gray.800" }}
+                        borderWidth="1px"
+                        rounded="2xl"
+                        shadow="2xl"
+                    >
                         <Drawer.CloseTrigger asChild>
                             <CloseButton />
                         </Drawer.CloseTrigger>

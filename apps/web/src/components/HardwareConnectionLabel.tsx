@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Badge, Box } from "@chakra-ui/react";
 import { FC, PropsWithChildren } from "react";
 
 export const HardwareConnectionLabel: FC<
@@ -9,22 +9,16 @@ export const HardwareConnectionLabel: FC<
 > = ({ children, status, labelPosition }) => {
     return (
         <Box
-            backgroundColor={"bg.muted"}
-            borderColor={
-                status === "incompatible" ? "border.error" : "border.success"
-            }
-            borderWidth={1}
             position={"absolute"}
-            padding={2}
-            rounded={"full"}
             transform={`translate(-50%, -50%) translate(${labelPosition.x}px, ${labelPosition.y}px)`}
         >
-            <Text
-                fontSize={"x-small"}
-                color={status === "incompatible" ? "fg.error" : "fg.success"}
+            <Badge
+                colorPalette={status === "incompatible" ? "red" : "green"}
+                size={"md"}
+                variant={"surface"}
             >
                 {children}
-            </Text>
+            </Badge>
         </Box>
     );
 };

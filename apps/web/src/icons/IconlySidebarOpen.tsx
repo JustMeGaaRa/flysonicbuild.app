@@ -7,7 +7,7 @@ type IconlyIconProps = {
 
 export const IconlySidebarOpen: FC<IconlyIconProps> = ({
     size = 24,
-    color = "#000000",
+    color = "currentColor",
 }: IconlyIconProps) => {
     return (
         <svg
